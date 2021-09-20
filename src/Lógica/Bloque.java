@@ -9,27 +9,33 @@ public class Bloque extends JLabel {
 	protected int posicionColumna;
 	protected Color color;
 	
-	public Bloque() {
-		
+	public Bloque(int posF, int posC, Color color) {
+		this.posicionFila= posF;
+		this.posicionColumna=posC;
+		this.color=color;
+	}
+	
+	public void pintar (Color c) {
+		this.color=c;
 	}
 	
 	public void setPosicionFila(int pos) {
-		posicionFila=pos;
+		this.posicionFila=pos;
 	}
 	
 	public void setPosicionColumna (int pos) {
-		posicionColumna=pos;
+		this.posicionColumna=pos;
 	}
 	
 	public int getPosicionFila() {
-		return posicionFila;
+		return this.posicionFila;
 	}
 	
 	public int getPosicionColumna() {
-		return posicionColumna;
+		return this.posicionColumna;
 	}
 	
 	public Color getColor(){
-		return color;
+		return this.color;
 	}
 }

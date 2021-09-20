@@ -1,16 +1,27 @@
 package Lógica;
 
+import java.awt.Color;
+
 public abstract class Tetrimino {
-	protected int rotacion;
+	protected int rotacion=0;
+	protected Color color;
 	protected Bloque[] bloquesIzq;
 	protected Bloque[] bloquesDer;
 	protected Bloque[] bloquesAbaj;
-	//falta agregar los cuatro bloques que lo conforman (misBloques)
+	protected Bloque[] misBloques = new Bloque[4];
+	
 	
 	public abstract void rotar();
-	public abstract void getBloquesIzq();
-	public abstract void getBloquesDer();
-	public abstract void getBloquesAbaj();
+	
+	public abstract Bloque[] getBloquesIzq();
+	
+	public abstract Bloque[] getBloquesDer();
+	
+	public abstract Bloque[] getBloquesAbaj();
+	
+	public Bloque[] getBloques() {
+		return this.misBloques;
+	}
 
 
 
