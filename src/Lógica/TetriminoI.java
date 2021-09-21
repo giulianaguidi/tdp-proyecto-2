@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public class TetriminoI extends Tetrimino{
 	
-	public TetriminoI () {
+	public TetriminoI () { 
 		this.color= new Color(0, 255, 255);
 		Bloque b11= new Bloque(0, 5, this.color);  
 		Bloque b21= new Bloque(1, 5, this.color);  
