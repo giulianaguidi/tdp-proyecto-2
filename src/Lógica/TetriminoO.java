@@ -32,7 +32,7 @@ public class TetriminoO extends Tetrimino{
 	@Override
 	public void rotar() {
 		if (this.rotacion==270)
-			this.rotacion=0;
+			this.rotacion=0;		//Para este tetrimino en particular, su rotacion es trivial.
 		else
 			this.rotacion+=90;
 	}

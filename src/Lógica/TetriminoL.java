@@ -32,46 +32,46 @@ public class TetriminoL extends Tetrimino {
 	public void rotar() {
 		if (this.rotacion==270) {
 			rotacion = 0;
-			this.bloquesAbaj= new Bloque[3];
-			this.bloquesIzq= new Bloque[2];
-			this.bloquesDer= new Bloque[1];
-			this.bloquesIzq[0]= misBloques[1]; 
-			this.bloquesDer[0]= misBloques[0];
-			this.bloquesDer[1]= misBloques[3];
-			this.bloquesAbaj[0]= misBloques[1];
-			this.bloquesAbaj[1]= misBloques[2];
-			this.bloquesAbaj[2]= misBloques[3];
+			this.bloquesAbaj= new Bloque[3];	//en 0			
+			this.bloquesIzq= new Bloque[2];		//Tetrimino:
+			this.bloquesDer= new Bloque[1];		//			  b13
+			this.bloquesIzq[0]= misBloques[1]; 	//  b21  b22  b23
+			this.bloquesDer[0]= misBloques[0];	//
+			this.bloquesDer[1]= misBloques[3];	//
+			this.bloquesAbaj[0]= misBloques[1];	//
+			this.bloquesAbaj[1]= misBloques[2];	//
+			this.bloquesAbaj[2]= misBloques[3];	//
 			
 		}else {
 			if (this.rotacion==90) {
-				this.bloquesIzq = new Bloque [2];
-				this.bloquesDer = new Bloque [1];
-				this.bloquesAbaj = new Bloque [1];
-				this.bloquesIzq[0] = misBloques[3];
-				this.bloquesIzq[1] = misBloques[0];
-				this.bloquesDer[0] = misBloques[1];
-				this.bloquesAbaj[0] = misBloques[0];
+				this.bloquesIzq = new Bloque [2];	//en 180
+				this.bloquesDer = new Bloque [1];	//Tetrimino:
+				this.bloquesAbaj = new Bloque [1];	// b23  b22  b21
+				this.bloquesIzq[0] = misBloques[3];	// b13
+				this.bloquesIzq[1] = misBloques[0];	//
+				this.bloquesDer[0] = misBloques[1];	//
+				this.bloquesAbaj[0] = misBloques[0];//
 			}else {
 				if (this.rotacion == 180) {
-					this.bloquesIzq = new Bloque[1];
-					this.bloquesDer = new Bloque[3];
-					this.bloquesAbaj = new Bloque [1];
-					this.bloquesAbaj[0] = misBloques[1];
-					this.bloquesIzq[0]= this.misBloques[0]; 
-					this.bloquesDer[0]= this.misBloques[3];
-					this.bloquesDer[1]= this.misBloques[2];
-					this.bloquesDer[2]= this.misBloques[1];
+					this.bloquesIzq = new Bloque[1];		//en 270
+					this.bloquesDer = new Bloque[3];		//Tetrimino:
+					this.bloquesAbaj = new Bloque [1];		//  b13  b23
+					this.bloquesAbaj[0] = misBloques[1];	//		 b22
+					this.bloquesIzq[0]= this.misBloques[0]; //       b21
+					this.bloquesDer[0]= this.misBloques[3];	//
+					this.bloquesDer[1]= this.misBloques[2];	//
+					this.bloquesDer[2]= this.misBloques[1];	//
 				}
 				else {
-					this.bloquesIzq = new Bloque[3];
-					this.bloquesDer = new Bloque[1];
-					this.bloquesAbaj = new Bloque [2];
-					this.bloquesAbaj[0] = misBloques[3];
-					this.bloquesAbaj[1] = misBloques[0];
-					this.bloquesIzq[0]= this.misBloques[1]; 
-					this.bloquesIzq[1]= this.misBloques[2];
-					this.bloquesIzq[2]= this.misBloques[3];
-					this.bloquesDer[0]= this.misBloques[0];
+					this.bloquesIzq = new Bloque[3];		//en 90
+					this.bloquesDer = new Bloque[1];		//Tetrimino:
+					this.bloquesAbaj = new Bloque [2];		//  b21
+					this.bloquesAbaj[0] = misBloques[3];	//  b22
+					this.bloquesAbaj[1] = misBloques[0];	//  b23  b13
+					this.bloquesIzq[0]= this.misBloques[1]; //
+					this.bloquesIzq[1]= this.misBloques[2];	//
+					this.bloquesIzq[2]= this.misBloques[3];	//
+					this.bloquesDer[0]= this.misBloques[0];	//
 				}
 			}
 			this.rotacion+=90;
