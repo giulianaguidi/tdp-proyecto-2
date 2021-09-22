@@ -9,6 +9,12 @@ public class Bloque extends JLabel {
 	protected int posicionColumna;
 	protected Color color;
 	
+	
+	public Bloque(int posF, int posC) {
+		this.posicionFila= posF;
+		this.posicionColumna=posC;
+	}
+	
 	public Bloque(int posF, int posC, Color color) {
 		this.posicionFila= posF;
 		this.posicionColumna=posC;
@@ -17,6 +23,8 @@ public class Bloque extends JLabel {
 	
 	public void pintar (Color c) {
 		this.color=c;
+		this.setBackground(this.color);
+		this.setForeground(this.color);
 	}
 	
 	public void setPosicionFila(int pos) {
@@ -38,4 +46,11 @@ public class Bloque extends JLabel {
 	public Color getColor(){
 		return this.color;
 	}
+	
+	public Bloque clone() {
+		Color clonado = new Color(color.getRed(), color.getGreen(), color.getBlue());
+		Bloque aRetornar = new Bloque(posicionFila, posicionColumna, clonado);
+		return aRetornar;
+	}
+	
 }
