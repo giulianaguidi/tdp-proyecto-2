@@ -18,78 +18,42 @@ public class Grilla {
 	 * @param Tetrimino t. 
 	 * @return int[]. Arreglo que guardara las posiciones de las filas que se lograron llenar.
 	 */
+	
 	public int[] getLineasLlenas(Tetrimino t) {
 		Bloque [] bloques = t.getBloques();
-		int filaB1= bloques[0].getPosicionFila();
-		int filaB2= 22;
-		int filaB3= 22;
-		int filaB4= 22;
 		boolean encontrado = false;
 		int[] toReturn = new int[4];
-		int contador = 0;
-		
-		for(int c = 0; c < cantColumnas && !encontrado; c++) {
-			encontrado = tablero[filaB1][c].getColor() == color;
-		}
-		
-		if(!encontrado) {
-			toReturn[contador] = filaB1;
-			contador++;
-		}
-		
-		encontrado = false;
-		
-		if (bloques[1].getPosicionFila() != filaB1) {
-			filaB2 = bloques[1].getPosicionFila();
-			
-			for(int c = 0; c < cantColumnas && !encontrado; c++) {
-				encontrado = tablero[filaB2][c].getColor() == color;
+		for (int i=0 ; i<bloques.length ; i++) {
+			if (lineaNoChequeada(bloques,i)) {
+				encontrado = chequearLineaLlena(bloques[i].getPosicionFila());
+				toReturn[i] = encontrado ? bloques[i].getPosicionFila() : 22;
 			}
-			
-			if(!encontrado) {
-				toReturn[contador] = filaB2;
-				contador++;		
-			}
-			
-			encontrado = false;
 		}
-		
-		if (bloques[2].getPosicionFila() != filaB1 && bloques[2].getPosicionFila() != filaB2) {
-			filaB3 = bloques[2].getPosicionFila();
-			
-			for(int c = 0; c < cantColumnas && !encontrado; c++) {
-				encontrado = tablero[filaB3][c].getColor() == color;
-			}
-			
-			if(!encontrado) {
-				toReturn[contador] = filaB3;
-				contador++;		
-			}
-			
-			encontrado = false;
-		}
-		
-		if (bloques[3].getPosicionFila() != filaB1 && bloques[3].getPosicionFila() != filaB2 && bloques[3].getPosicionFila() != filaB3) {
-			filaB4 = bloques[3].getPosicionFila();
-			
-			for(int c = 0; c < cantColumnas && !encontrado; c++) {
-				encontrado = tablero[filaB4][c].getColor() == color;
-			}
-			
-			if(!encontrado) 
-				toReturn[contador] = filaB4;		
-			
-			encontrado = false;
-		}
-		
 		return toReturn;
-		
 	}
+	
+	private boolean lineaNoChequeada(Bloque[] bloques, int i) {
+		boolean yaChequeado = false;
+		for (int j=0 ; j<i && !yaChequeado ; j++) {
+			yaChequeado = bloques[j].getPosicionFila() == bloques[i].getPosicionFila();
+		}
+		return !yaChequeado;
+	}
+
+	private boolean chequearLineaLlena(int fila) {
+		boolean filaLlena = true;
+		for(int c = 0; c < cantColumnas && filaLlena; c++) {
+			filaLlena = tablero[fila][c].getColor() != color;
+		}
+		return filaLlena;
+	}
+
 	/*
 	 * Metodo encargado de eliminar las lineas que estan llenas.
 	 * @param int[] linea. Arreglo que contiene las posiciones de la o las filas llenas. vacio en caso de que no se llenaran filas.
 	 * 
 	 */
+	
 	public void eliminarLineas(int[] linea) {
 		for(int i = 0; i < linea.length; i++) {
 			for(int c = 0; c < cantColumnas; c++) {
