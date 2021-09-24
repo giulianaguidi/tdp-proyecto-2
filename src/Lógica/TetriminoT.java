@@ -3,12 +3,13 @@ package Lógica;
 import java.awt.Color;
 
 public class TetriminoT extends Tetrimino {
-	public TetriminoT() {
+	public TetriminoT(Bloque b12, Bloque b21, Bloque b22, Bloque b23) {
 		this.color= new Color(148,0,211);
-		Bloque b12= new Bloque(0, 4, this.color);  //         b12
-		Bloque b21= new Bloque(0, 5, this.color);  //	b21   b22  b23
-		Bloque b22= new Bloque(1, 5, this.color);  //
-		Bloque b23= new Bloque(1, 6, this.color);  //
+		b12.pintar(this.color);
+		b21.pintar(this.color);
+		b22.pintar(this.color);
+		b23.pintar(this.color);
+
 		
 		this.misBloques[0]= b12;
 		this.misBloques[1]= b21;

@@ -4,12 +4,12 @@ import java.awt.Color;
 
 public class TetriminoI extends Tetrimino{
 	
-	public TetriminoI () { 
+	public TetriminoI (Bloque b11, Bloque b21, Bloque b31, Bloque b41) { 
 		this.color= new Color(0, 255, 255);
-		Bloque b11= new Bloque(0, 5, this.color);  
-		Bloque b21= new Bloque(1, 5, this.color);  
-		Bloque b31= new Bloque(2, 5, this.color);
-		Bloque b41= new Bloque(3, 5, this.color);
+		b11.pintar(this.color);		
+		b21.pintar(this.color);
+		b31.pintar(this.color);
+		b41.pintar(this.color);
 		
 		this.misBloques[0]= b11;
 		this.misBloques[1]= b21;

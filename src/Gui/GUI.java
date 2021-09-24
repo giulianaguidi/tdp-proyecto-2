@@ -7,11 +7,13 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
 
 import Lógica.Bloque;
+import java.awt.FlowLayout;
 
 
 public class GUI extends JFrame{
@@ -21,18 +23,19 @@ public class GUI extends JFrame{
 	protected Bloque[][] tableroGrafico;
 	protected static final int cantFilas=21;
 	protected static final int cantColumnas=10;
-	
+	protected JLabel tiempo;
+
 	protected static final Color fondo = new Color(1, 1, 1);
 	
 	
 	//Esto esta para probar los colores
-	protected static final Color I = new Color(12, 183, 242);
-	protected static final Color J = new Color(0, 255, 0); 
-	protected static final Color L = new Color(255, 165, 0);
+	protected static final Color I = new Color(0, 255, 255);
+	protected static final Color J = new Color(0, 0 ,255); 
+	protected static final Color L = new Color(255, 200, 0);
 	protected static final Color O = new Color(255, 255, 0);
-	protected static final Color S = new Color(0, 0, 255);
-	protected static final Color T = new Color(255, 0, 255);
-	protected static final Color Z = new Color(255, 0 ,0);
+	protected static final Color S = new Color(0, 255, 0);
+	protected static final Color T = new Color(148, 0, 211);
+	protected static final Color Z = new Color(255, 0, 0);
 
 	
 	// Estos valores estan para poder dividir el panel en 2
@@ -46,9 +49,7 @@ public class GUI extends JFrame{
 				try {
 					GUI window = new GUI();
 					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				} catch (Exception e) {e.printStackTrace();}
 			}
 		});
 	}
@@ -66,7 +67,7 @@ public class GUI extends JFrame{
 		
 		panelDer = new JPanel();
 		panelDer.setBorder(new EmptyBorder(5, 5, 5, 5));
-		panelDer.setBackground(new Color(255-47,255-79,255-79));
+		panelDer.setBackground(new Color(255-47, 255-79, 255-79));
 		
 		
 		
@@ -74,11 +75,11 @@ public class GUI extends JFrame{
 		splitPane.setEnabled(false);
 		
 		splitPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		splitPane.setBackground(new Color(255,255,255));
-		splitPane.setDividerLocation(dimensionX/2);
+		splitPane.setBackground(new Color(255, 255, 255));
+		splitPane.setDividerLocation(dimensionX / 2);
 		
 		Dimension d = new Dimension();
-		d.setSize(splitPane.getSize().getWidth()/2, splitPane.getSize().getHeight());
+		d.setSize(splitPane.getSize().getWidth() / 2, splitPane.getSize().getHeight());
 		
 		panelDer.setSize(d);
 		
@@ -90,21 +91,58 @@ public class GUI extends JFrame{
 		setContentPane(splitPane);
 		splitPane.getSize().getWidth();
 		
+		tiempo = new JLabel();
 
-		prepararGrilla();
-	
+
+		prepararGrillaIzq();
+		prepararGrillaDer();
 
 		
 	}
 	
+	public void pintarFondo(Bloque[] fondos){
+		int posFila;
+		int posColumna;
+		for (int i = 0; i < fondos.length; i++){
+			posFila = fondos[i].getPosicionFila();
+			posColumna = fondos[i].getPosicionColumna();
+			tableroGrafico[posFila][posColumna].pintar(fondo);
+		} 
+	}
+
+	public void pintarNuevo(Bloque[] bloques, Color color) {
+		int posFila;
+		int posColumna;
+		for (int i = 0; i < bloques.length; i++){
+			posFila = bloques[i].getPosicionFila();
+			posColumna = bloques[i].getPosicionColumna();
+			tableroGrafico[posFila][posColumna].pintar(color);
+		} 
+	}
+
+	public Bloque[][] getTableroGrafico(){
+		return this.tableroGrafico;
+	}
+
+
+	public JLabel getTiempo(){
+		return this.tiempo;
+	}
+
 	
+	private void prepararGrillaDer() {
+		panelDer.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		tiempo.setText("00");
+		panelDer.add(tiempo);
+	}
+
 	/*
 	 * En este metodo tenemos que hacer 2 for anidados para que clonen un bloque ya creado, y le cambiamos la posicion, o creamos un bloque y le seteamos posicion y coloro.
 	 * ambas formas son validas, una es usando el concepto de prototype (creando objetos nuevos a partir de uno base).
 	 * Otra opcion, es que la grilla cree el doble arreglo. e inicie los objetos, y en la gui se le cambie los colores en este metodo. para esto le pasariamos la grilla a la gui, y esta
 	 * pediria el tablero, que es lo unico que necesitaria de la grilla.
 	 */
-	private void prepararGrilla() {
+	private void prepararGrillaIzq() {
 		tableroGrafico = new Bloque[cantFilas][cantColumnas];
 		
 		Bloque prototipo = new Bloque(0, 0, fondo);
@@ -122,4 +160,6 @@ public class GUI extends JFrame{
 			}
 		}
 	}
+
+
 }

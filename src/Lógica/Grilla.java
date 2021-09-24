@@ -6,10 +6,10 @@ public class Grilla {
 	protected Bloque[][] tablero;
 	protected static final int cantFilas=21;
 	protected static final int cantColumnas=10;
-	protected static final Color color= new Color (119, 136, 153);//color ejemplo
+	protected static final Color color= new Color(1, 1, 1);
 
-	public Grilla() {
-		tablero = new Bloque[cantFilas][cantColumnas];
+	public Grilla(Bloque[][] miTablero) {
+		tablero = miTablero;
 	}
 	
 	/*
@@ -23,7 +23,7 @@ public class Grilla {
 		Bloque [] bloques = t.getBloques();
 		boolean encontrado = false;
 		int[] toReturn = new int[4];
-		for (int i=0 ; i<bloques.length ; i++) {
+		for (int i = 0 ; i < bloques.length ; i++) {
 			if (lineaNoChequeada(bloques,i)) {
 				encontrado = chequearLineaLlena(bloques[i].getPosicionFila());
 				toReturn[i] = encontrado ? bloques[i].getPosicionFila() : 22;
@@ -34,7 +34,7 @@ public class Grilla {
 	
 	private boolean lineaNoChequeada(Bloque[] bloques, int i) {
 		boolean yaChequeado = false;
-		for (int j=0 ; j<i && !yaChequeado ; j++) {
+		for (int j = 0 ; j<i && !yaChequeado ; j++) {
 			yaChequeado = bloques[j].getPosicionFila() == bloques[i].getPosicionFila();
 		}
 		return !yaChequeado;
@@ -70,12 +70,18 @@ public class Grilla {
 	 * @return boolean verdader en caso de que se pueda colocar el tetrimino. falso en caso contrario.
 	 */
 	public boolean puedeAparecer(Tetrimino t) {
-		return false;
-		
+		boolean cumple = true;
+		Bloque[] misBloques = t.getBloques();
+		int i = 0;
+		while(cumple && i<misBloques.length){
+			cumple = misBloques[i].getColor().getRGB() == color.getRGB();
+			i++;
+		}
+		return cumple;
 	}
 	
 	/*
-	 * Metodo para verificar que el movimiento que se desea realizar sea valido.
+	 * Verifica que el movimiento a derecha sea valido.
 	 * @param Tetrimino t. tetrimino que se desea mover.
 	 * @return boolean. verdader en caso  de que el movimiento sea valido. falso en caso contrario.
 	 */
@@ -89,7 +95,7 @@ public class Grilla {
 	}
 	
 	/*
-	 * Metodo para verificar que el movimiento que se desea realizar sea valido.
+	 * Verifica que el movimiento a izquierda sea valido.
 	 * @param Tetrimino t. tetrimino que se desea mover.
 	 * @return boolean. verdader en caso  de que el movimiento sea valido. falso en caso contrario.
 	 */
@@ -103,7 +109,7 @@ public class Grilla {
 	}
 	
 	/*
-	 * Metodo para verificar que el movimiento que se desea realizar sea valido.
+	 * Verifica que el movimiento que se desea realizar sea valido.
 	 * @param Tetrimino t. tetrimino que se desea mover.
 	 * @return boolean. verdader en caso  de que el movimiento sea valido. falso en caso contrario.
 	 */
@@ -117,7 +123,7 @@ public class Grilla {
 	}
 	
 	/*
-	 * Metodo para verificar que el movimiento que se desea realizar sea valido.
+	 * Verifica que el movimiento de rotacion sea valido.
 	 * @param Tetrimino t. tetrimino que se desea mover.
 	 * @return boolean. verdader en caso  de que el movimiento sea valido. falso en caso contrario.
 	 */
@@ -126,10 +132,35 @@ public class Grilla {
 	}
 	
 	/*
-	 *
-	 */
+	 * Reorganiza el tablero segun cuantas lineas se eliminaron.
+	 * @param int [] linea. Arreglo de enteros de las lineas eliminadas
+	 */ 
 	private void acomodarTablero(int[] linea) {
-		
+		for (int i = 0 ; i < linea.length ; i++) {
+			if (linea[i] != 22) {
+				for (int j = i ; j >= 0 && !chequearLineaVacia(j,linea); j--) {
+					for (int c = 0 ; c < cantColumnas ; c++) {
+						Color aux = tablero[j][c].getColor();
+						tablero[j][c].pintar(tablero[j+1][c].getColor());
+						tablero[j+1][c].pintar(aux);
+					}
+				}
+			}
+		}	
 	}
 		
+	private boolean chequearLineaVacia(int fila,int borradas[]) {
+		boolean lineaVacia = true ;
+		for (int i = 0 ; i < borradas.length && lineaVacia; i++) {
+			lineaVacia = fila != borradas[i];
+		}
+		for (int c = 0 ; c < cantColumnas && lineaVacia; c++) {
+			lineaVacia = tablero[fila][c].getColor() == color;
+		}
+		return lineaVacia;
+	}
+	
+	public Bloque obtenerBloque (int f, int c){
+		return tablero[f][c];
+	}
 }
