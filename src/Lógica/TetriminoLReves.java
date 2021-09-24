@@ -7,10 +7,7 @@ public class TetriminoLReves extends Tetrimino {
 	public TetriminoLReves(Bloque b11, Bloque b21,  Bloque b22, Bloque b23) {
 		this.color= new Color(0, 0, 255);
 		
-		b11.pintar(this.color);
-		b21.pintar(this.color);
-		b22.pintar(this.color);
-		b23.pintar(this.color);
+	
 
 		this.misBloques[0]= b11;
 		this.misBloques[1]= b21;

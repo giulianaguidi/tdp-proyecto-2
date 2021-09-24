@@ -6,10 +6,7 @@ public class TetriminoI extends Tetrimino{
 	
 	public TetriminoI (Bloque b11, Bloque b21, Bloque b31, Bloque b41) { 
 		this.color= new Color(0, 255, 255);
-		b11.pintar(this.color);		
-		b21.pintar(this.color);
-		b31.pintar(this.color);
-		b41.pintar(this.color);
+
 		
 		this.misBloques[0]= b11;
 		this.misBloques[1]= b21;

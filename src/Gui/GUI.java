@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,7 +18,7 @@ import Lógica.Bloque;
 import java.awt.FlowLayout;
 
 
-public class GUI extends JFrame{
+public class GUI extends JFrame implements KeyListener{
 	private JSplitPane splitPane;
 	private JPanel panelIzq;
 	private JPanel panelDer;
@@ -69,7 +71,7 @@ public class GUI extends JFrame{
 		panelDer.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panelDer.setBackground(new Color(255-47, 255-79, 255-79));
 		
-		
+		this.addKeyListener(this);
 		
 		splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelIzq, panelDer );
 		splitPane.setEnabled(false);
@@ -159,6 +161,25 @@ public class GUI extends JFrame{
 				panelIzq.add(nuevo);
 			}
 		}
+	}
+
+	// ESTE METODO LO USAMOS PARA CUANDO SE PRESIONA UNA TECLA
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		tiempo.setText("tecla apretada");
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		tiempo.setText("soltada");
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		tiempo.setText("tecla tipada");
 	}
 
 

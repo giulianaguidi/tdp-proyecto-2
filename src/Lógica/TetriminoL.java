@@ -6,10 +6,7 @@ public class TetriminoL extends Tetrimino {
 	 
 	public TetriminoL(Bloque b13, Bloque b21, Bloque b22, Bloque b23) {
 		this.color= new Color(255,200,0);
-		b13.pintar(this.color);  
-	    b21.pintar(this.color); 
-	    b22.pintar(this.color); 
-	    b23.pintar(this.color); 
+	
 		
 		this.misBloques[0]= b13;
 		this.misBloques[1]= b21;
