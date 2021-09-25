@@ -67,11 +67,19 @@ public class Logica {
 			Gui.pintarNuevo(bloques, tetriminoActual.color);
 
 		}else{
+			sumarPuntos();
 			actualizarTetriminoActual();
 			actualizarTetriminoProximo();
+			if (!miGrilla.puedeAparecer(tetriminoActual))
+				finDelJuego();
+			
 		}
 	}
 	
+	public void finDelJuego() {
+		
+	}
+
 	public void actualizarTetriminoActual (){
 		this.tetriminoActual = this.tetriminoProximo;
 	}
@@ -120,5 +128,29 @@ public class Logica {
 		    bloques[2].setPosicionFila(bloques[2].getPosicionFila()+1);
 			bloques[3].setPosicionFila(bloques[3].getPosicionFila()+1);
 		}
+	}
+	
+	public void sumarPuntos() {
+		int [] lineasLlenas= miGrilla.getLineasLlenas(tetriminoActual);
+		miGrilla.eliminarLineas(lineasLlenas);
+		int cantLineasLlenas=0;
+		
+		for(int i=0; i<lineasLlenas.length; i++)
+			if (lineasLlenas[i]!=22)
+				cantLineasLlenas++;
+		
+		switch(cantLineasLlenas) {
+		case 0: {break;}
+		case 1: {actualizarPuntaje(100); break;}
+		case 2: {actualizarPuntaje(200); break;}
+		case 3: {actualizarPuntaje(500); break;}
+		case 4: {actualizarPuntaje(800); break;}
+		}
+		
+		Gui.getPuntos().setText("Puntaje: "+ this.puntaje);
+	}
+	
+	private void actualizarPuntaje (int p) {
+		this.puntaje+=p;
 	}
 }

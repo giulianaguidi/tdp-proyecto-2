@@ -26,6 +26,7 @@ public class GUI extends JFrame implements KeyListener{
 	protected static final int cantFilas=21;
 	protected static final int cantColumnas=10;
 	protected JLabel tiempo;
+	protected JLabel puntos;
 
 	protected static final Color fondo = new Color(1, 1, 1);
 	
@@ -94,6 +95,9 @@ public class GUI extends JFrame implements KeyListener{
 		splitPane.getSize().getWidth();
 		
 		tiempo = new JLabel();
+		tiempo.setBounds(214, 10, 12, 14);
+		puntos= new JLabel();
+		puntos.setBounds(200, 35, 50, 14);
 
 
 		prepararGrillaIzq();
@@ -130,12 +134,18 @@ public class GUI extends JFrame implements KeyListener{
 	public JLabel getTiempo(){
 		return this.tiempo;
 	}
+	
+	public JLabel getPuntos() {
+		return this.puntos;
+	}
 
 	
 	private void prepararGrillaDer() {
-		panelDer.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panelDer.setLayout(null);
 		tiempo.setText("00");
 		panelDer.add(tiempo);
+		puntos.setText("Puntaje: 0");
+		panelDer.add(puntos);
 	}
 
 	/*
