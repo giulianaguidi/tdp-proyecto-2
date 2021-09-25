@@ -83,7 +83,7 @@ public class GUI extends JFrame implements KeyListener{
 		
 		
 		setTitle("¡Juega al Tetris!");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(new Dimension(dimensionX, dimensionY));
 		setResizable(false);
 		setContentPane(splitPane);
