@@ -80,6 +80,7 @@ public class TetriminoLReves extends Tetrimino {
 	public Bloque[] getBloquesIzq() {
 		return bloquesIzq;
 	}
+	
 
 	@Override
 	public Bloque[] getBloquesDer() {

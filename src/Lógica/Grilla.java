@@ -89,7 +89,7 @@ public class Grilla {
 		Bloque[] bloquesDerecha = t.getBloquesDer();
 		boolean valido = true;
 		for(int c = 0; c < bloquesDerecha.length && valido; c++) {
-			valido = tablero[bloquesDerecha[c].getPosicionFila()][bloquesDerecha[c].getPosicionColumna() + 1].getColor() == color;
+			valido = tablero[bloquesDerecha[c].getPosicionFila()][bloquesDerecha[c].getPosicionColumna() + 1].getColor().equals(color);
 		}
 		return valido;		
 	}
@@ -103,7 +103,7 @@ public class Grilla {
 		Bloque[] bloquesIzquierda = t.getBloquesIzq();
 		boolean valido = true;
 		for(int c = 0; c < bloquesIzquierda.length && valido; c++) {
-			valido = tablero[bloquesIzquierda[c].getPosicionFila()][bloquesIzquierda[c].getPosicionColumna() - 1].getColor() == color;
+			valido = tablero[bloquesIzquierda[c].getPosicionFila()][bloquesIzquierda[c].getPosicionColumna() - 1].getColor().equals(color);
 		}
 		return valido;			
 	}

@@ -7,7 +7,7 @@ public class Logica {
 	protected int puntaje;
 	protected Tetrimino tetriminoActual;
 	protected Tetrimino tetriminoProximo;
-	protected Tetrimino[] misTetriminos;
+	protected Tetrimino[] misTetriminos = new Tetrimino[7];
 	protected int velocidad = 1;
 	protected int contador;
 	protected Grilla miGrilla;
@@ -18,8 +18,9 @@ public class Logica {
 
 	public Logica() {
 
-		Gui = new GUI();
-
+		Gui = new GUI(this);
+		Gui.setVisible(true);
+		
 		Bloque[][] miTablero = Gui.getTableroGrafico();
 
 		miGrilla = new Grilla(miTablero);
@@ -32,11 +33,15 @@ public class Logica {
 		misTetriminos[5] = new TetriminoZ(miGrilla.obtenerBloque(0, 4), miGrilla.obtenerBloque(0, 5), miGrilla.obtenerBloque(1, 5), miGrilla.obtenerBloque(1, 6));
 		misTetriminos[6] = new TetriminoO(miGrilla.obtenerBloque(0, 5), miGrilla.obtenerBloque(0, 6), miGrilla.obtenerBloque(1, 5), miGrilla.obtenerBloque(1, 6));
 		
+		actualizarTetriminoProximo();
+		actualizarTetriminoActual();
+		actualizarTetriminoProximo();
 		
 	}
 
 	public void iniciarJuego() {
-		
+		reloj = new Reloj(Gui, this);
+		reloj.run();
 	}
 	
 	public int getPuntaje() {
@@ -82,6 +87,8 @@ public class Logica {
 
 	public void actualizarTetriminoActual (){
 		this.tetriminoActual = this.tetriminoProximo;
+		if (miGrilla.puedeAparecer(tetriminoActual))
+			Gui.pintarNuevo(tetriminoActual.getBloques(), tetriminoActual.color);
 	}
 	
 	public void actualizarTetriminoProximo(){
@@ -103,16 +110,14 @@ public class Logica {
 
 			Gui.pintarNuevo(bloques, tetriminoActual.color);
 
-			bloques[1].setPosicionFila(bloques[1].getPosicionFila()+1);
-		    bloques[2].setPosicionFila(bloques[2].getPosicionFila()+1);
-			bloques[3].setPosicionFila(bloques[3].getPosicionFila()+1);
+			
 		}
 	}
 	
 	public void moverIzquierda(){
 		Bloque[] bloques = tetriminoActual.getBloques();
 		if (miGrilla.puedoMoverIzquierda(this.tetriminoActual)){
-						
+			Gui.getTiempo().setText("SE PUEDE MOVER");				
 			Bloque[][] tableroGrafico = Gui.getTableroGrafico();
 
 			Gui.pintarFondo(bloques);
@@ -124,10 +129,11 @@ public class Logica {
 
 			Gui.pintarNuevo(bloques, tetriminoActual.color);
 
-			bloques[1].setPosicionFila(bloques[1].getPosicionFila()+1);
-		    bloques[2].setPosicionFila(bloques[2].getPosicionFila()+1);
-			bloques[3].setPosicionFila(bloques[3].getPosicionFila()+1);
+		
+		}else {
+			Gui.getTiempo().setText("NO se puede mover");
 		}
+		
 	}
 	
 	public void sumarPuntos() {
@@ -152,5 +158,10 @@ public class Logica {
 	
 	private void actualizarPuntaje (int p) {
 		this.puntaje+=p;
+	}
+
+	public void rotarTetrimino() {
+		// TODO Auto-generated method stub
+		
 	}
 }

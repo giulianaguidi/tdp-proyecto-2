@@ -15,7 +15,10 @@ import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
 
 import Lógica.Bloque;
+import Lógica.Logica;
+
 import java.awt.FlowLayout;
+import javax.swing.SwingConstants;
 
 
 public class GUI extends JFrame implements KeyListener{
@@ -27,7 +30,9 @@ public class GUI extends JFrame implements KeyListener{
 	protected static final int cantColumnas=10;
 	protected JLabel tiempo;
 	protected JLabel puntos;
-
+	protected Logica miLogica;
+	
+	
 	protected static final Color fondo = new Color(1, 1, 1);
 	
 	
@@ -46,19 +51,9 @@ public class GUI extends JFrame implements KeyListener{
 	protected static final int dimensionY = 760;
 	
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUI window = new GUI();
-					window.setVisible(true);
-				} catch (Exception e) {e.printStackTrace();}
-			}
-		});
-	}
-	
-	public GUI() {
+	public GUI(Logica l) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/images/icon-tetris.png")));
+		miLogica = l;
 		initialize();
 	}
 	
@@ -95,9 +90,10 @@ public class GUI extends JFrame implements KeyListener{
 		splitPane.getSize().getWidth();
 		
 		tiempo = new JLabel();
-		tiempo.setBounds(214, 10, 12, 14);
+		tiempo.setHorizontalAlignment(SwingConstants.RIGHT);
+		tiempo.setBounds(200, 10, 105, 27);
 		puntos= new JLabel();
-		puntos.setBounds(200, 35, 50, 14);
+		puntos.setBounds(200, 35, 86, 27);
 
 
 		prepararGrillaIzq();
@@ -146,6 +142,20 @@ public class GUI extends JFrame implements KeyListener{
 		panelDer.add(tiempo);
 		puntos.setText("Puntaje: 0");
 		panelDer.add(puntos);
+		
+		JLabel Tiempo_Transcurrido = new JLabel();
+		Tiempo_Transcurrido.setText("Tiempo: ");
+		Tiempo_Transcurrido.setBounds(130, 10, 86, 27);
+		panelDer.add(Tiempo_Transcurrido);
+		
+		
+		/*
+		 * Espacio para agregar una matriz de 3X4 para poder mostrar 
+		 * el siguiente tetrimino. 
+		 */
+		
+		
+		
 	}
 
 	/*
@@ -177,7 +187,12 @@ public class GUI extends JFrame implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		tiempo.setText("tecla apretada");
+		if (e.getKeyCode() == e.VK_LEFT)
+			miLogica.moverIzquierda();
+		if (e.getKeyCode() == e.VK_RIGHT)
+			miLogica.moverDerecha();
+		if (e.getKeyCode() == e.VK_UP)
+			miLogica.rotarTetrimino();
 	}
 
 	@Override
@@ -191,6 +206,4 @@ public class GUI extends JFrame implements KeyListener{
 		// TODO Auto-generated method stub
 		tiempo.setText("tecla tipada");
 	}
-
-
 }
