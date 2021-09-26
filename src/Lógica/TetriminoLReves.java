@@ -92,4 +92,10 @@ public class TetriminoLReves extends Tetrimino {
 		return bloquesAbaj;
 	}
 
+	@Override
+	public Tetrimino clone() {
+		// TODO Auto-generated method stub
+		return new TetriminoLReves(misBloques[0], misBloques[1], misBloques[2], misBloques[3]);
+	}
+
 }

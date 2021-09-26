@@ -57,9 +57,12 @@ public class Logica {
 	}
 
 	public void bajarTetrimino(){
-		Bloque[] bloques = tetriminoActual.getBloques();
 		if (miGrilla.puedeDescender(tetriminoActual)){
 
+			Bloque[] bloques = tetriminoActual.getBloques();
+			Bloque[] bloquesDer = tetriminoActual.getBloquesDer();
+			Bloque[] bloquesIzq = tetriminoActual.getBloquesIzq();
+			Bloque[] bloquesAbaj = tetriminoActual.getBloquesAbaj();
 			Bloque[][] tableroGrafico = Gui.getTableroGrafico();
 
 			Gui.pintarFondo(bloques);
@@ -67,8 +70,18 @@ public class Logica {
 			bloques[0] = tableroGrafico[bloques[0].getPosicionFila() + 1][bloques[0].getPosicionColumna()];
 			bloques[1] = tableroGrafico[bloques[1].getPosicionFila() + 1][bloques[1].getPosicionColumna()];	
 			bloques[2] = tableroGrafico[bloques[2].getPosicionFila() + 1][bloques[2].getPosicionColumna()];	
-			bloques[3] = tableroGrafico[bloques[3].getPosicionFila() + 1][bloques[3].getPosicionColumna()];	
-
+			bloques[3] = tableroGrafico[bloques[3].getPosicionFila() + 1][bloques[3].getPosicionColumna()];
+			
+			for (int i = 0; i<bloquesDer.length;i++) {
+				bloquesDer[i] = tableroGrafico[bloquesDer[i].getPosicionFila() + 1][bloquesDer[i].getPosicionColumna()];	
+			}
+			for (int i = 0; i<bloquesIzq.length;i++) {
+				bloquesIzq[i] = tableroGrafico[bloquesIzq[i].getPosicionFila() + 1][bloquesIzq[i].getPosicionColumna()];	
+			}
+			for (int i = 0; i<bloquesAbaj.length;i++) {
+				bloquesAbaj[i] = tableroGrafico[bloquesAbaj[i].getPosicionFila() + 1][bloquesAbaj[i].getPosicionColumna()];	
+			}
+			
 			Gui.pintarNuevo(bloques, tetriminoActual.color);
 
 		}else{
@@ -92,14 +105,19 @@ public class Logica {
 	}
 	
 	public void actualizarTetriminoProximo(){
-		this.tetriminoProximo = misTetriminos[randi.nextInt(7)];
+		this.tetriminoProximo = misTetriminos[randi.nextInt(7)].clone();
 	}
 	
 	public void moverDerecha(){
-		Bloque[] bloques = tetriminoActual.getBloques();
 		if (miGrilla.puedoMoverDerecha(this.tetriminoActual)){
 			
+			Bloque[] bloques = tetriminoActual.getBloques();
+			Bloque[] bloquesDer = tetriminoActual.getBloquesDer();
+			Bloque[] bloquesIzq = tetriminoActual.getBloquesIzq();
+			Bloque[] bloquesAbaj = tetriminoActual.getBloquesAbaj();
 			Bloque[][] tableroGrafico = Gui.getTableroGrafico();
+			
+			
 
 			Gui.pintarFondo(bloques);
 
@@ -109,15 +127,26 @@ public class Logica {
 			bloques[3] = tableroGrafico[bloques[3].getPosicionFila()][bloques[3].getPosicionColumna() + 1];	
 
 			Gui.pintarNuevo(bloques, tetriminoActual.color);
-
+			
+			for (int i = 0; i<bloquesDer.length;i++) {
+				bloquesDer[i] = tableroGrafico[bloquesDer[i].getPosicionFila()][bloquesDer[i].getPosicionColumna() + 1];	
+			}
+			for (int i = 0; i<bloquesIzq.length;i++) {
+				bloquesIzq[i] = tableroGrafico[bloquesIzq[i].getPosicionFila()][bloquesIzq[i].getPosicionColumna() + 1];	
+			}
+			for (int i = 0; i<bloquesAbaj.length;i++) {
+				bloquesAbaj[i] = tableroGrafico[bloquesAbaj[i].getPosicionFila()][bloquesAbaj[i].getPosicionColumna() + 1];	
+			}
 			
 		}
 	}
 	
 	public void moverIzquierda(){
-		Bloque[] bloques = tetriminoActual.getBloques();
 		if (miGrilla.puedoMoverIzquierda(this.tetriminoActual)){
-			Gui.getTiempo().setText("SE PUEDE MOVER");				
+			Bloque[] bloques = tetriminoActual.getBloques();
+			Bloque[] bloquesDer = tetriminoActual.getBloquesDer();
+			Bloque[] bloquesIzq = tetriminoActual.getBloquesIzq();
+			Bloque[] bloquesAbaj = tetriminoActual.getBloquesAbaj();
 			Bloque[][] tableroGrafico = Gui.getTableroGrafico();
 
 			Gui.pintarFondo(bloques);
@@ -127,8 +156,19 @@ public class Logica {
 			bloques[2] = tableroGrafico[bloques[2].getPosicionFila()][bloques[2].getPosicionColumna() - 1];	
 			bloques[3] = tableroGrafico[bloques[3].getPosicionFila()][bloques[3].getPosicionColumna() - 1];	
 
+			for (int i = 0; i<bloquesDer.length;i++) {
+				bloquesDer[i] = tableroGrafico[bloquesDer[i].getPosicionFila()][bloquesDer[i].getPosicionColumna() - 1];	
+			}
+			for (int i = 0; i<bloquesIzq.length;i++) {
+				bloquesIzq[i] = tableroGrafico[bloquesIzq[i].getPosicionFila()][bloquesIzq[i].getPosicionColumna() - 1];	
+			}
+			for (int i = 0; i<bloquesAbaj.length;i++) {
+				bloquesAbaj[i] = tableroGrafico[bloquesAbaj[i].getPosicionFila()][bloquesAbaj[i].getPosicionColumna() - 1];	
+			}
+			
+			
 			Gui.pintarNuevo(bloques, tetriminoActual.color);
-
+			
 		
 		}else {
 			Gui.getTiempo().setText("NO se puede mover");

@@ -14,8 +14,16 @@ public class TetriminoI extends Tetrimino{
 		this.misBloques[3]= b41;
 		
 		this.bloquesAbaj= new Bloque[1];
-		this.bloquesIzq= misBloques;
-		this.bloquesDer= misBloques;
+		this.bloquesIzq= new Bloque[4];
+		this.bloquesDer= new Bloque[4];
+		this.bloquesIzq[0]= b11;
+		this.bloquesDer[0]= b11;
+		this.bloquesIzq[1]= b21;
+		this.bloquesDer[1]= b21;
+		this.bloquesIzq[2]= b31;
+		this.bloquesDer[2]= b31;
+		this.bloquesIzq[3]= b41;
+		this.bloquesDer[3]= b41;
 		
 		this.bloquesAbaj[0]= b41;
 	}
@@ -77,6 +85,12 @@ public class TetriminoI extends Tetrimino{
 	@Override
 	public Bloque[] getBloquesAbaj() {
 		return bloquesAbaj;
+	}
+
+	@Override
+	public Tetrimino clone() {
+		// TODO Auto-generated method stub
+		return new TetriminoI(misBloques[0], misBloques[1], misBloques[2], misBloques[3]);
 	}
 
 }

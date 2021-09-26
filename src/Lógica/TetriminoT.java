@@ -85,4 +85,10 @@ public class TetriminoT extends Tetrimino {
 	public Bloque[] getBloquesAbaj() {
 		return bloquesAbaj;
 	}
+
+	@Override
+	public Tetrimino clone() {
+		// TODO Auto-generated method stub
+		return new TetriminoL(misBloques[0], misBloques[1], misBloques[2], misBloques[3]);
+	}
 }

@@ -43,7 +43,7 @@ public class Grilla {
 	private boolean chequearLineaLlena(int fila) {
 		boolean filaLlena = true;
 		for(int c = 0; c < cantColumnas && filaLlena; c++) {
-			filaLlena = tablero[fila][c].getColor() != color;
+			filaLlena = !tablero[fila][c].getColor().equals(color);
 		}
 		return filaLlena;
 	}
@@ -57,7 +57,8 @@ public class Grilla {
 	public void eliminarLineas(int[] linea) {
 		for(int i = 0; i < linea.length; i++) {
 			for(int c = 0; c < cantColumnas; c++) {
-				tablero[linea[i]][c].pintar(color);
+				if (linea[i]!=22)
+					tablero[linea[i]][c].pintar(color);
 			}
 		}	
 		acomodarTablero(linea);
@@ -74,7 +75,7 @@ public class Grilla {
 		Bloque[] misBloques = t.getBloques();
 		int i = 0;
 		while(cumple && i<misBloques.length){
-			cumple = misBloques[i].getColor().getRGB() == color.getRGB();
+			cumple = misBloques[i].getColor().equals(color);
 			i++;
 		}
 		return cumple;
@@ -89,7 +90,10 @@ public class Grilla {
 		Bloque[] bloquesDerecha = t.getBloquesDer();
 		boolean valido = true;
 		for(int c = 0; c < bloquesDerecha.length && valido; c++) {
-			valido = tablero[bloquesDerecha[c].getPosicionFila()][bloquesDerecha[c].getPosicionColumna() + 1].getColor().equals(color);
+			if (bloquesDerecha[c].getPosicionColumna() < cantColumnas-1)
+				valido = tablero[bloquesDerecha[c].getPosicionFila()][bloquesDerecha[c].getPosicionColumna() + 1].getColor().equals(color);
+			else
+				valido = false;
 		}
 		return valido;		
 	}
@@ -103,7 +107,10 @@ public class Grilla {
 		Bloque[] bloquesIzquierda = t.getBloquesIzq();
 		boolean valido = true;
 		for(int c = 0; c < bloquesIzquierda.length && valido; c++) {
-			valido = tablero[bloquesIzquierda[c].getPosicionFila()][bloquesIzquierda[c].getPosicionColumna() - 1].getColor().equals(color);
+			if (bloquesIzquierda[c].getPosicionColumna() > 0)
+				valido = tablero[bloquesIzquierda[c].getPosicionFila()][bloquesIzquierda[c].getPosicionColumna() - 1].getColor().equals(color);
+			else
+				valido = false;
 		}
 		return valido;			
 	}
@@ -117,7 +124,10 @@ public class Grilla {
 		Bloque[] bloquesAbajo = t.getBloquesAbaj();
 		boolean valido = true;
 		for(int i = 0; i < bloquesAbajo.length && valido; i++) {
-			valido = tablero[bloquesAbajo[i].getPosicionFila() + 1][bloquesAbajo[i].getPosicionColumna()].getColor() == color;
+			if (bloquesAbajo[i].getPosicionFila() < cantFilas - 1)
+				valido = tablero[bloquesAbajo[i].getPosicionFila() + 1][bloquesAbajo[i].getPosicionColumna()].getColor().equals(color);
+			else
+				valido = false;
 		}
 		return valido;	
 	}

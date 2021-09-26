@@ -193,6 +193,8 @@ public class GUI extends JFrame implements KeyListener{
 			miLogica.moverDerecha();
 		if (e.getKeyCode() == e.VK_UP)
 			miLogica.rotarTetrimino();
+		if (e.getKeyCode() == e.VK_DOWN)
+			miLogica.bajarTetrimino();
 	}
 
 	@Override

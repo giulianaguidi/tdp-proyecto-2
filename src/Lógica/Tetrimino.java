@@ -22,7 +22,8 @@ public abstract class Tetrimino {
 	public Bloque[] getBloques() {
 		return this.misBloques;
 	}
-
+	
+	public abstract Tetrimino clone();
 
 
 }
