@@ -24,7 +24,7 @@ public class Ayuda extends JFrame {
 		setSize(new Dimension(407, 300));
 		setAlwaysOnTop(true);
 		
-		JLabel lblNewLabel = new JLabel("ACA VAN LAS REGLAS DEL JUEGO Y LOS CONTROLES");
+		JLabel lblNewLabel = new JLabel("ACA VAN LAS REGLAS DEL JUEGO Y LOS CONTROLES\r\n\r\n\r\n\r\n");
 		getContentPane().add(lblNewLabel, BorderLayout.CENTER);
 	}
 

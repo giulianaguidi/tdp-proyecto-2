@@ -14,15 +14,17 @@ public class Reloj implements Runnable {
 	protected long tiempoTranscurrido = tiempoActual - tiempoInicial;
 	protected long tiempoActualEnSegundos = System.currentTimeMillis() / 1000;
 	protected int paso = 1000;
+	protected boolean activo;
 	
 	public Reloj (GUI gui, Logica juego) {
 		this.gui = gui;
 		this.logica = juego;
+		this.activo=true;
 	}
 
 	@Override
 	public void run() {
-		while (true) {			
+		while (activo) {			
 			tiempoActual = System.currentTimeMillis(); 
 			tiempoTranscurrido = tiempoActual - tiempoInicial;
 			tiempoActualEnSegundos = System.currentTimeMillis() / 1000;		
@@ -49,5 +51,9 @@ public class Reloj implements Runnable {
 	private void actualizarTiempo(){
 		JLabel auxiliar = gui.getTiempo();
 		auxiliar.setText("" + tiempoActualEnSegundos);
+	}
+	
+	public void stop() {
+		activo = false;
 	}
 }

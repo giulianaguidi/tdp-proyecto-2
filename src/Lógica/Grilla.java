@@ -75,7 +75,10 @@ public class Grilla {
 		Bloque[] misBloques = t.getBloques();
 		int i = 0;
 		while(cumple && i<misBloques.length){
-			cumple = misBloques[i].getColor().equals(color);
+			/*cumple = misBloques[i].getColor().equals(color);
+			i++;
+			*/
+			cumple = tablero[misBloques[i].getPosicionFila()][misBloques[i].getPosicionColumna()].getColor().equals(color);
 			i++;
 		}
 		return cumple;

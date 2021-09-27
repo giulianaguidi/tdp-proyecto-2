@@ -19,6 +19,8 @@ import Lógica.Logica;
 
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JTextField;
 
 
 public class GUI extends JFrame implements KeyListener{
@@ -49,6 +51,8 @@ public class GUI extends JFrame implements KeyListener{
 	// Estos valores estan para poder dividir el panel en 2
 	protected static final int dimensionX = 1024;
 	protected static final int dimensionY = 760;
+	private JLabel tetriminoProximo;
+	private JPanel panel_1;
 	
 	
 	public GUI(Logica l) {
@@ -88,12 +92,9 @@ public class GUI extends JFrame implements KeyListener{
 		setResizable(false);
 		setContentPane(splitPane);
 		splitPane.getSize().getWidth();
-		
-		tiempo = new JLabel();
-		tiempo.setHorizontalAlignment(SwingConstants.RIGHT);
-		tiempo.setBounds(200, 10, 105, 27);
 		puntos= new JLabel();
-		puntos.setBounds(200, 35, 86, 27);
+		puntos.setFont(new Font("Consolas", Font.BOLD, 16));
+		puntos.setBounds(106, 25, 90, 19);
 
 
 		prepararGrillaIzq();
@@ -138,15 +139,49 @@ public class GUI extends JFrame implements KeyListener{
 	
 	private void prepararGrillaDer() {
 		panelDer.setLayout(null);
-		tiempo.setText("00");
-		panelDer.add(tiempo);
-		puntos.setText("Puntaje: 0");
-		panelDer.add(puntos);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 240, 245));
+		panel.setBounds(114, 98, 221, 60);
+		panelDer.add(panel);
+		panel.setLayout(null);
+		puntos.setText("0");
+		panel.add(puntos);
+		
+		JLabel Puntaje_obtenido = new JLabel("Puntaje:");
+		Puntaje_obtenido.setFont(new Font("Consolas", Font.BOLD, 16));
+		Puntaje_obtenido.setBounds(10, 25, 72, 19);
+		panel.add(Puntaje_obtenido);
+		
+		tetriminoProximo = new JLabel("Proximo Tetrimino:");
+		tetriminoProximo.setFont(new Font("Consolas", Font.BOLD, 16));
+		tetriminoProximo.setBounds(114, 197, 207, 33);
+		panelDer.add(tetriminoProximo);
+		
+		panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 245, 238));
+		panel_1.setBounds(112, 11, 221, 60);
+		panelDer.add(panel_1);
+		panel_1.setLayout(null);
 		
 		JLabel Tiempo_Transcurrido = new JLabel();
+		Tiempo_Transcurrido.setBounds(10, 11, 129, 40);
+		panel_1.add(Tiempo_Transcurrido);
+		Tiempo_Transcurrido.setFont(new Font("Consolas", Font.BOLD, 16));
 		Tiempo_Transcurrido.setText("Tiempo: ");
-		Tiempo_Transcurrido.setBounds(130, 10, 86, 27);
-		panelDer.add(Tiempo_Transcurrido);
+		
+		tiempo = new JLabel();
+		tiempo.setBounds(106, 18, 105, 27);
+		panel_1.add(tiempo);
+		tiempo.setFont(new Font("Consolas", Font.BOLD, 16));
+		tiempo.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		tiempo.setText("00");
+		
+		
+		
+	
+		
 		
 		
 		/*
@@ -186,7 +221,6 @@ public class GUI extends JFrame implements KeyListener{
 	// ESTE METODO LO USAMOS PARA CUANDO SE PRESIONA UNA TECLA
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 		if (e.getKeyCode() == e.VK_LEFT)
 			miLogica.moverIzquierda();
 		if (e.getKeyCode() == e.VK_RIGHT)
@@ -199,13 +233,11 @@ public class GUI extends JFrame implements KeyListener{
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
 		tiempo.setText("soltada");
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
 		tiempo.setText("tecla tipada");
 	}
 }
