@@ -89,4 +89,10 @@ public class TetriminoZ extends Tetrimino {
 		// TODO Auto-generated method stub
 		return new TetriminoL(misBloques[0], misBloques[1], misBloques[2], misBloques[3]);
 	}
+
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return this.color;
+	}
 }

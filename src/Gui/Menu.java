@@ -49,9 +49,7 @@ public class Menu extends JFrame {
 		btnReglas.setBounds(82, 163, 264, 33);
 		getContentPane().add(btnReglas);
 	}
-	
-	
-		
+			
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 			Menu juego = new Menu();

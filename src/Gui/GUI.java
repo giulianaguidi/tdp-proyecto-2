@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import Lógica.Bloque;
 import Lógica.Logica;
+import Lógica.Tetrimino;
 
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
@@ -28,6 +29,7 @@ public class GUI extends JFrame implements KeyListener{
 	private JPanel panelIzq;
 	private JPanel panelDer;
 	protected Bloque[][] tableroGrafico;
+	protected Bloque[][] proximoTetrimino;
 	protected static final int cantFilas=21;
 	protected static final int cantColumnas=10;
 	protected JLabel tiempo;
@@ -178,18 +180,25 @@ public class GUI extends JFrame implements KeyListener{
 		
 		tiempo.setText("00");
 		
-		
-		
-	
-		
-		
-		
-		/*
-		 * Espacio para agregar una matriz de 3X4 para poder mostrar 
-		 * el siguiente tetrimino. 
-		 */
-		
-		
+		Bloque B;
+		proximoTetrimino = new Bloque[4][3];
+		int boundX = 114;
+		int boundY = 241;
+		int boundWidth = 46;
+		int boundHeight = 14;
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 3; j++) {
+				B = new Bloque(i, j, fondo);
+				B.setBounds(boundX, boundY, boundWidth, boundHeight);
+				proximoTetrimino[i][j] = B;
+				B.setOpaque(true);
+				B.pintar(fondo);
+				panelDer.add(B);
+				boundX+=56;
+			}
+			boundX = 114;
+			boundY+=25;
+		}		
 		
 	}
 
@@ -233,11 +242,30 @@ public class GUI extends JFrame implements KeyListener{
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		tiempo.setText("soltada");
+		
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		tiempo.setText("tecla tipada");
+		
+	}
+
+	public void pintarProximoTetriminoGrafico(Tetrimino proximo) {
+		// TODO Auto-generated method stub
+		Bloque[] auxiliar = proximo.getBloques();
+		for (int i = 0; i < auxiliar.length; i++) {
+			int fila = auxiliar[i].getPosicionFila();
+			int columna = auxiliar[i].getPosicionColumna()-4;
+			proximoTetrimino[fila][columna].pintar(proximo.getColor());
+		}
+	}
+
+	public void repintarProximoTetrimino() {
+		// TODO Auto-generated method stub
+		for(int fila = 0; fila<proximoTetrimino.length;fila++) {
+			for (int columna = 0; columna<proximoTetrimino[fila].length;columna++) {
+				proximoTetrimino[fila][columna].pintar(fondo);
+			}
+		}
 	}
 }

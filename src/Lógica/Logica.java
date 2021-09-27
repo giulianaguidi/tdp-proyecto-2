@@ -25,6 +25,8 @@ public class Logica {
 
 		miGrilla = new Grilla(miTablero);
 
+		
+		
 		misTetriminos[0] = new TetriminoI(miGrilla.obtenerBloque(0, 5), miGrilla.obtenerBloque(1, 5), miGrilla.obtenerBloque(2, 5), miGrilla.obtenerBloque(3, 5));
 		misTetriminos[1] = new TetriminoL(miGrilla.obtenerBloque(0, 6), miGrilla.obtenerBloque(1, 4), miGrilla.obtenerBloque(1, 5), miGrilla.obtenerBloque(1, 6));
 		misTetriminos[2] = new TetriminoLReves(miGrilla.obtenerBloque(0, 4), miGrilla.obtenerBloque(1, 4), miGrilla.obtenerBloque(1, 5), miGrilla.obtenerBloque(1, 6));
@@ -37,6 +39,8 @@ public class Logica {
 		actualizarTetriminoActual();
 		actualizarTetriminoProximo();
 		this.puntaje=0;
+		
+		//iniciarJuego();
 		
 	}
 
@@ -89,15 +93,15 @@ public class Logica {
 			sumarPuntos();
 			actualizarTetriminoActual();
 			actualizarTetriminoProximo();
-			/*if (!miGrilla.puedeAparecer(tetriminoActual))
-				finDelJuego();*/
+			if (!miGrilla.puedeAparecer(tetriminoActual))
+				finDelJuego();
 			
 		}
 	}
 	
-	/*public void finDelJuego() {
+	public void finDelJuego() {
 		this.reloj.stop();
-	}*/
+	}
 
 	public void actualizarTetriminoActual (){
 		this.tetriminoActual = this.tetriminoProximo;
@@ -106,7 +110,11 @@ public class Logica {
 	}
 	
 	public void actualizarTetriminoProximo(){
+		
 		this.tetriminoProximo = misTetriminos[randi.nextInt(7)].clone();
+		Gui.repintarProximoTetrimino();
+		Gui.pintarProximoTetriminoGrafico(tetriminoProximo);
+		
 	}
 	
 	public void moverDerecha(){

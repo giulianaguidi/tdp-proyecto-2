@@ -98,4 +98,10 @@ public class TetriminoLReves extends Tetrimino {
 		return new TetriminoLReves(misBloques[0], misBloques[1], misBloques[2], misBloques[3]);
 	}
 
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return this.color;
+	}
+
 }
