@@ -9,12 +9,16 @@ public class Logica {
 	protected Tetrimino tetriminoProximo;
 	protected Tetrimino[] misTetriminos = new Tetrimino[7];
 	protected int velocidad = 1;
-	protected int contador;
 	protected Grilla miGrilla;
 	protected Reloj reloj;
 	protected GUI Gui;
 	protected Random randi = new Random();
+	protected boolean enJuego;
 
+	public final int MOVER_ABAJO = 0;
+	public final int MOVER_IZQUIERDA = 1;
+	public final int MOVER_DERECHA = 2;
+	public final int ROTAR = 3;
 
 	public Logica() {
 
@@ -42,12 +46,15 @@ public class Logica {
 		
 		iniciarJuego();
 		
+		
+		
 	}
 
 	public void iniciarJuego() {
 		reloj = new Reloj(Gui, this);
 		Thread t = new Thread(this.reloj);
 		t.start();
+		enJuego = true;
 	}
 	
 	public int getPuntaje() {
@@ -60,6 +67,28 @@ public class Logica {
 	
 	public void aumentarVelocidad() {
 		this.velocidad++;
+	}
+
+	public boolean enJuego(){
+		return enJuego;
+	}
+
+	public synchronized void accion(int action) {
+		switch(action) {
+		case MOVER_ABAJO:{
+			bajarTetrimino();
+			break;
+		}
+		case MOVER_IZQUIERDA:{
+			moverIzquierda();
+			break;}
+		case MOVER_DERECHA:{
+			moverDerecha();
+			break;}
+		case ROTAR:{
+			rotarTetrimino();
+			break;}
+		}
 	}
 
 	public void bajarTetrimino(){
@@ -99,6 +128,7 @@ public class Logica {
 	
 	public void finDelJuego() {
 		this.reloj.stop();
+		enJuego=false;
 	}
 
 	public void actualizarTetriminoActual (){
@@ -767,20 +797,16 @@ public class Logica {
 			
 			int fila = misBloques[0].getPosicionFila() - 1;
 			int columna = misBloques[0].getPosicionColumna() + 1;
-			if (fila < 0 || columna > 9)
-				break;
 			misBloques[0] = tableroGrafico[fila][columna];
 			fila = misBloques[2].getPosicionFila() + 1;
 			columna = misBloques[2].getPosicionColumna() - 1;
-			if (fila < 21 || columna < 0)
-				break;
 			misBloques[2] = tableroGrafico[fila][columna];
 			fila = misBloques[3].getPosicionFila() + 2;
 			columna = misBloques[3].getPosicionColumna() - 2;
-			if (fila > 21 || columna < 0)
-				break;
 			misBloques[3] = tableroGrafico[fila][columna];
-			 break;}
+
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());
+			break;}
 		}
 	}
 

@@ -172,28 +172,32 @@ public class Grilla {
 			int columna = misBloques[1].getPosicionColumna() + 1;
 			if (fila < 0 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);			
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);			
 		break;}
 		case 270: {
 			int fila = misBloques[1].getPosicionFila() + 1;
 			int columna = misBloques[1].getPosicionColumna() + 1;
 			if (fila > 21 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 		break;}
 		case 0: {
 			int fila = misBloques[1].getPosicionFila() + 1;
 			int columna = misBloques[1].getPosicionColumna() - 1;
 			if (fila > 21 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 		break;}
 		case 90: {
 			int fila = misBloques[1].getPosicionFila() - 1;
 			int columna = misBloques[1].getPosicionColumna() - 1;
 			if (fila < 0 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 		break;}
 		}
 		return cumple;
@@ -210,17 +214,20 @@ public class Grilla {
 			int columna = misBloques[0].getPosicionColumna() + 2;
 			if (fila < 0 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[1].getPosicionFila() - 1 ;
 			columna = misBloques[1].getPosicionColumna() + 1;
 			if (fila < 0 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[3].getPosicionFila() + 1;
 			columna = misBloques[3].getPosicionColumna() - 1;
 			if (fila > 21 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			
 		break;}
 		case 90: {
@@ -229,17 +236,20 @@ public class Grilla {
 			int columna = misBloques[0].getPosicionColumna();
 			if (fila > 21 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[1].getPosicionFila() + 1 ;
 			columna = misBloques[1].getPosicionColumna() + 1;
 			if (fila > 21 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[3].getPosicionFila() - 1;
 			columna = misBloques[3].getPosicionColumna() - 1;
 			if (fila < 0 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 							
 		break;}
 		case 180: {
@@ -248,17 +258,20 @@ public class Grilla {
 			int columna = misBloques[0].getPosicionColumna() - 2;
 			if (fila < 0 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[1].getPosicionFila() + 1 ;
 			columna = misBloques[1].getPosicionColumna() - 1;
 			if (fila > 21 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[3].getPosicionFila() - 1;
 			columna = misBloques[3].getPosicionColumna() + 1;
 			if (fila < 0 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 				
 		break;}
 		case 270: {	
@@ -267,17 +280,20 @@ public class Grilla {
 			int columna = misBloques[0].getPosicionColumna() ;
 			if (fila < 0 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[1].getPosicionFila() - 1 ;
 			columna = misBloques[1].getPosicionColumna() - 1;
 			if (fila < 0 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[3].getPosicionFila() + 1;
 			columna = misBloques[3].getPosicionColumna() + 1;
 			if (fila > 21 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 							
 		break;}
 		}
@@ -294,12 +310,14 @@ public class Grilla {
 			int columna = misBloques[2].getPosicionColumna() + 1;
 			if (fila > 21 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[3].getPosicionFila() + 2;
 			columna = misBloques[3].getPosicionColumna();
 			if (fila > 21 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 	
 		break;}
 		case 90: {
@@ -308,12 +326,14 @@ public class Grilla {
 			int columna = misBloques[2].getPosicionColumna() - 1;
 			if (fila > 21 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[3].getPosicionFila();
 			columna = misBloques[3].getPosicionColumna() - 2;
 			if (fila > 21 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 				
 		break;}
 		case 180: {
@@ -322,12 +342,14 @@ public class Grilla {
 			int columna = misBloques[2].getPosicionColumna() - 1;
 			if (fila < 0 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[3].getPosicionFila() - 2;
 			columna = misBloques[3].getPosicionColumna();
 			if (fila < 0 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 	
 		break;}
 		case 270: {
@@ -336,12 +358,14 @@ public class Grilla {
 			int columna = misBloques[2].getPosicionColumna() + 1;
 			if (fila < 0 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[3].getPosicionFila();
 			columna = misBloques[3].getPosicionColumna() + 2;
 			if (fila > 21 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 				
 		break;}
 		}
@@ -359,13 +383,15 @@ public class Grilla {
 			int columna = misBloques[0].getPosicionColumna() + 2;
 			if (fila < 0 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			
 			fila = misBloques[3].getPosicionFila() + 1;
 			columna = misBloques[3].getPosicionColumna() - 1;
 			if (fila > 21 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 				
 		break;}
 		case 90: {
@@ -374,13 +400,15 @@ public class Grilla {
 			int columna = misBloques[0].getPosicionColumna() + 2;
 			if (fila > 21 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			
 			fila = misBloques[3].getPosicionFila() - 1;
 			columna = misBloques[3].getPosicionColumna() - 1;
 			if (fila < 0 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 				
 		break;}
 		case 180: {
@@ -389,13 +417,15 @@ public class Grilla {
 			int columna = misBloques[0].getPosicionColumna() - 2;
 			if (fila > 21 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 
 			fila = misBloques[3].getPosicionFila() - 1;
 			columna = misBloques[3].getPosicionColumna() + 1;
 			if (fila < 0 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 				
 		break;}
 		case 270: {
@@ -404,13 +434,15 @@ public class Grilla {
 			int columna = misBloques[0].getPosicionColumna();
 			if (fila < 0 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			
 			fila = misBloques[3].getPosicionFila() + 1;
 			columna = misBloques[3].getPosicionColumna() + 1;
 			if (fila > 21 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 
 		break;}
 			}
@@ -428,37 +460,43 @@ public class Grilla {
 			int columna = misBloques[0].getPosicionColumna() + 2;
 			if (fila > 21 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[1].getPosicionFila();
 			columna = misBloques[1].getPosicionColumna() + 1;
 			if (fila > 21 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[3].getPosicionFila() - 2;
 			columna = misBloques[3].getPosicionColumna() - 1;
 			if (fila < 0 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			
 		break;}
 		case 90: {
 
-			int fila = misBloques[0].getPosicionFila() - 1;
+			int fila = misBloques[0].getPosicionFila() + 2;
 			int columna = misBloques[0].getPosicionColumna() - 2;
 			if (fila < 0 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			
 			fila = misBloques[2].getPosicionFila() + 1;
 			columna = misBloques[2].getPosicionColumna();
 			if (fila < 0 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[3].getPosicionFila() + 2;
 			columna = misBloques[3].getPosicionColumna() + 1;
 			if (fila > 21 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 
 		break;}
 		case 180: {
@@ -467,36 +505,42 @@ public class Grilla {
 			int columna = misBloques[0].getPosicionColumna() + 2;
 			if (fila > 21 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
-			fila = misBloques[1].getPosicionFila();
-			columna = misBloques[1].getPosicionColumna() + 1;
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			fila = misBloques[2].getPosicionFila();
+			columna = misBloques[2].getPosicionColumna() + 1;
 			if (fila > 21 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[3].getPosicionFila() - 2;
 			columna = misBloques[3].getPosicionColumna() - 1;
 			if (fila < 0 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 		break;}
 		case 270: {
 
 			int fila = misBloques[0].getPosicionFila() - 1;
-			int columna = misBloques[0].getPosicionColumna() - 2;
+			int columna = misBloques[0].getPosicionColumna() + 1;
 			if (fila < 0 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			
 			fila = misBloques[2].getPosicionFila() + 1;
-			columna = misBloques[2].getPosicionColumna();
+			columna = misBloques[2].getPosicionColumna() - 1;
 			if (fila < 0 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[3].getPosicionFila() + 2;
-			columna = misBloques[3].getPosicionColumna() + 1;
+			columna = misBloques[3].getPosicionColumna() - 2;
 			if (fila > 21 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 
 		break;}
 		}
@@ -513,68 +557,80 @@ public class Grilla {
 			int columna = misBloques[1].getPosicionColumna()+1;
 			if (fila < 0 || columna > 9)
 				cumple = false;
-			cumple = tablero[fila][columna].getColor().equals(color);
+			else	
+				cumple = tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[3].getPosicionFila() + 1;
 			columna = misBloques[3].getPosicionColumna() - 1;
 			if (fila > 21 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[0].getPosicionFila() + 2;
 			columna = misBloques[0].getPosicionColumna();
 			if (fila > 21 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);	
+			else	
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);	
 		break;}
 		case 90: {
 			int fila = misBloques[1].getPosicionFila()+1;
 			int columna = misBloques[1].getPosicionColumna()+1;
 			if (fila > 21 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else	
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[3].getPosicionFila() - 1;
 			columna = misBloques[3].getPosicionColumna() - 1;
 			if (fila < 0 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[0].getPosicionFila();
 			columna = misBloques[0].getPosicionColumna() - 2;
 			if (fila > 21 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 		break;}
 		case 180: {
 			int fila = misBloques[1].getPosicionFila() + 1;
 			int columna = misBloques[1].getPosicionColumna() - 1;
 			if (fila > 21 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[3].getPosicionFila() - 1;
 			columna = misBloques[3].getPosicionColumna() + 1;
 			if (fila < 0 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[0].getPosicionFila() - 2;
 			columna = misBloques[0].getPosicionColumna();
 			if (fila < 0 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 		break;}
 		case 270: {
 			int fila = misBloques[1].getPosicionFila() - 1;
-			int columna = misBloques[1].getPosicionColumna() - 1;
+			int columna = misBloques[1].getPosicionColumna() + 1;
 			if (fila < 0 || columna < 0)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[3].getPosicionFila() + 1;
 			columna = misBloques[3].getPosicionColumna() + 1;
 			if (fila > 21 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 			fila = misBloques[0].getPosicionFila();
 			columna = misBloques[0].getPosicionColumna() + 2;
 			if (fila < 0 || columna > 9)
 				cumple = false;
-			cumple = cumple && tablero[fila][columna].getColor().equals(color);
+			else
+				cumple = cumple && tablero[fila][columna].getColor().equals(color);
 		break;}
 		}
 		return cumple;

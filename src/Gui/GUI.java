@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.applet.AudioClip;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,7 +32,6 @@ public class GUI extends JFrame implements KeyListener{
 	protected JLabel tiempo;
 	protected JLabel puntos;
 	protected Logica miLogica;
-	
 	
 	protected static final Color fondo = new Color(1, 1, 1);
 	
@@ -98,6 +98,9 @@ public class GUI extends JFrame implements KeyListener{
 		prepararGrillaIzq();
 		prepararGrillaDer();
 
+		AudioClip Sound;
+		Sound = java.applet.Applet.newAudioClip(getClass().getResource("/music/tetris-theme.mp3"));
+		Sound.play();
 		
 	}
 	
@@ -225,14 +228,14 @@ public class GUI extends JFrame implements KeyListener{
 	// ESTE METODO LO USAMOS PARA CUANDO SE PRESIONA UNA TECLA
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == e.VK_LEFT)
-			miLogica.moverIzquierda();
-		if (e.getKeyCode() == e.VK_RIGHT)
-			miLogica.moverDerecha();
-		if (e.getKeyCode() == e.VK_UP)
-			miLogica.rotarTetrimino();
-		if (e.getKeyCode() == e.VK_DOWN)
-			miLogica.bajarTetrimino();
+		if (e.getKeyCode() == e.VK_LEFT && miLogica.enJuego())
+			miLogica.accion(miLogica.MOVER_IZQUIERDA);
+		if (e.getKeyCode() == e.VK_RIGHT && miLogica.enJuego())
+			miLogica.accion(miLogica.MOVER_DERECHA);
+		if (e.getKeyCode() == e.VK_UP && miLogica.enJuego())
+			miLogica.accion(miLogica.ROTAR);
+		if (e.getKeyCode() == e.VK_DOWN && miLogica.enJuego())
+			miLogica.accion(miLogica.MOVER_ABAJO);
 	}
 
 	@Override

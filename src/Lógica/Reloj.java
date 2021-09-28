@@ -30,7 +30,8 @@ public class Reloj implements Runnable {
 			tiempoActualEnSegundos = tiempoTranscurrido / 1000;		
 			try {
 				Thread.sleep(paso);
-				logica.bajarTetrimino();
+				if (logica.enJuego())
+					logica.accion(logica.MOVER_ABAJO);
 			} catch (InterruptedException e) {e.printStackTrace();}
 			actualizarTiempo();
 			if (tiempoActualEnSegundos == 45) {
