@@ -184,11 +184,10 @@ public class GUI extends JFrame implements KeyListener{
 		int boundHeight = 14;
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 3; j++) {
-				B = new Bloque(i, j, fondo);
+				B = new Bloque(i, j);
 				B.setBounds(boundX, boundY, boundWidth, boundHeight);
 				proximoTetrimino[i][j] = B;
 				B.setOpaque(true);
-				B.pintar(fondo);
 				panelDer.add(B);
 				boundX+=56;
 			}
@@ -260,7 +259,7 @@ public class GUI extends JFrame implements KeyListener{
 		// TODO Auto-generated method stub
 		for(int fila = 0; fila<proximoTetrimino.length;fila++) {
 			for (int columna = 0; columna < proximoTetrimino[fila].length; columna++) {
-				proximoTetrimino[fila][columna].pintar(fondo);
+				proximoTetrimino[fila][columna].pintar(null);
 			}
 		}
 	}

@@ -94,8 +94,6 @@ public class Logica {
 			sumarPuntos();
 			actualizarTetriminoActual();
 			actualizarTetriminoProximo();
-			
-			
 		}
 	}
 	
@@ -180,8 +178,6 @@ public class Logica {
 			Gui.pintarNuevo(bloques, tetriminoActual.color);
 			
 		
-		}else {
-			Gui.getTiempo().setText("NO se puede mover");
 		}
 		
 	}
@@ -236,7 +232,6 @@ public class Logica {
 	}
 
 	private void rotarTetriminoL(){
-		System.out.println("Empece la rotacion");
 		int rotacion = tetriminoActual.getRotacion();
 		Bloque[] misBloques = tetriminoActual.getBloques();
 		Bloque [][] tableroGrafico = Gui.getTableroGrafico();
@@ -423,9 +418,9 @@ public class Logica {
 		case 0: {
 			Gui.pintarFondo(misBloques);
 
-			int fila = misBloques[0].getPosicionFila() - 1;
-			int columna = misBloques[0].getPosicionColumna() - 1;
-			if (fila < 0 || columna < 0)
+			int fila = misBloques[0].getPosicionFila() + 1;
+			int columna = misBloques[0].getPosicionColumna() + 1;
+			if (fila > 21 || columna > 9)
 				break;
 			misBloques[0] = tableroGrafico[fila][columna];
 			fila = misBloques[1].getPosicionFila() - 1;
@@ -444,9 +439,9 @@ public class Logica {
 		case 90: {
 			Gui.pintarFondo(misBloques);
 
-			int fila = misBloques[0].getPosicionFila() - 1;
-			int columna = misBloques[0].getPosicionColumna() + 1;
-			if (fila < 0 || columna > 9 )
+			int fila = misBloques[0].getPosicionFila() + 1;
+			int columna = misBloques[0].getPosicionColumna() - 1;
+			if (fila > 21 || columna < 0 )
 				break;
 			misBloques[0] = tableroGrafico[fila][columna];
 			fila = misBloques[1].getPosicionFila() + 1;
@@ -465,9 +460,9 @@ public class Logica {
 		case 180: {
 			Gui.pintarFondo(misBloques);
 
-			int fila = misBloques[0].getPosicionFila() + 1;
-			int columna = misBloques[0].getPosicionColumna() + 1;
-			if (fila > 21 || columna > 9)
+			int fila = misBloques[0].getPosicionFila() - 1;
+			int columna = misBloques[0].getPosicionColumna() - 1;
+			if (fila < 0 || columna < 0)
 				break;
 			misBloques[0] = tableroGrafico[fila][columna];
 			fila = misBloques[1].getPosicionFila() + 1;
@@ -486,9 +481,9 @@ public class Logica {
 		case 270: {
 			Gui.pintarFondo(misBloques);
 
-			int fila = misBloques[0].getPosicionFila() + 1;
-			int columna = misBloques[0].getPosicionColumna() - 1;
-			if (fila > 21 || columna < 0)
+			int fila = misBloques[0].getPosicionFila() - 1;
+			int columna = misBloques[0].getPosicionColumna() + 1;
+			if (fila < 0 || columna > 9)
 				break;
 			misBloques[0] = tableroGrafico[fila][columna];
 			fila = misBloques[1].getPosicionFila() - 1;
@@ -628,8 +623,8 @@ public class Logica {
 		case 90: {
 			Gui.pintarFondo(misBloques);
 
-			int fila = misBloques[0].getPosicionFila() ;
-			int columna = misBloques[0].getPosicionColumna() + 2;
+			int fila = misBloques[0].getPosicionFila() + 2;
+			int columna = misBloques[0].getPosicionColumna();
 			if (fila > 21 || columna > 9)
 				break;
 			misBloques[0] = tableroGrafico[fila][columna];
@@ -724,22 +719,17 @@ public class Logica {
 		case 90: {
 			Gui.pintarFondo(misBloques);
 
-			int fila = misBloques[0].getPosicionFila() - 1;
+			int fila = misBloques[0].getPosicionFila() + 2;
 			int columna = misBloques[0].getPosicionColumna() - 2;
-			if (fila < 0 || columna < 0)
+			if (fila > 21 || columna < 0)
 				break;
 			misBloques[0] = tableroGrafico[fila][columna];
-			fila = misBloques[1].getPosicionFila();
+			fila = misBloques[1].getPosicionFila() + 1;
 			columna = misBloques[1].getPosicionColumna() - 1;
 			if (fila > 21 || columna < 0)
 				break;
 			misBloques[1] = tableroGrafico[fila][columna];
-			fila = misBloques[2].getPosicionFila() + 1;
-			columna = misBloques[2].getPosicionColumna();
-			if (fila < 0 || columna > 9)
-				break;
-			misBloques[2] = tableroGrafico[fila][columna];
-			fila = misBloques[3].getPosicionFila() + 2;
+			fila = misBloques[3].getPosicionFila() - 1;
 			columna = misBloques[3].getPosicionColumna() + 1;
 			if (fila > 21 || columna > 9)
 				break;
@@ -749,24 +739,24 @@ public class Logica {
 			 break;}
 		case 180: {
 			Gui.pintarFondo(misBloques);
-			int fila = misBloques[0].getPosicionFila() + 1;
-			int columna = misBloques[0].getPosicionColumna() + 2;
-			if (fila > 21 || columna > 9)
+			int fila = misBloques[0].getPosicionFila() - 2;
+			int columna = misBloques[0].getPosicionColumna() - 1;
+			if (fila < 0 || columna < 0)
 				break;
 			misBloques[0] = tableroGrafico[fila][columna];
-			fila = misBloques[1].getPosicionFila();
-			columna = misBloques[1].getPosicionColumna() + 1;
-			if (fila > 21 || columna > 9)
+			fila = misBloques[1].getPosicionFila() - 1;
+			columna = misBloques[1].getPosicionColumna();
+			if (fila < 0 || columna > 9)
 				break;
 			misBloques[1] = tableroGrafico[fila][columna];
-			fila = misBloques[2].getPosicionFila() - 1;
-			columna = misBloques[2].getPosicionColumna();
-			if (fila < 0 || columna < 0)
+			fila = misBloques[2].getPosicionFila();
+			columna = misBloques[2].getPosicionColumna() + 1;
+			if (fila < 0 || columna > 9)
 				break;
 			misBloques[2] = tableroGrafico[fila][columna];
-			fila = misBloques[3].getPosicionFila() - 2;
-			columna = misBloques[3].getPosicionColumna() - 1;
-			if (fila < 0 || columna < 0)
+			fila = misBloques[3].getPosicionFila() + 1;
+			columna = misBloques[3].getPosicionColumna() + 2;
+			if (fila > 21 || columna > 9)
 				break;
 			misBloques[3] = tableroGrafico[fila][columna];
 			
@@ -776,23 +766,18 @@ public class Logica {
 			Gui.pintarFondo(misBloques);
 			
 			int fila = misBloques[0].getPosicionFila() - 1;
-			int columna = misBloques[0].getPosicionColumna() - 2;
-			if (fila < 0 || columna < 0)
+			int columna = misBloques[0].getPosicionColumna() + 1;
+			if (fila < 0 || columna > 9)
 				break;
 			misBloques[0] = tableroGrafico[fila][columna];
-			fila = misBloques[1].getPosicionFila();
-			columna = misBloques[1].getPosicionColumna() - 1;
-			if (fila > 21 || columna < 0)
-				break;
-			misBloques[1] = tableroGrafico[fila][columna];
 			fila = misBloques[2].getPosicionFila() + 1;
-			columna = misBloques[2].getPosicionColumna();
-			if (fila < 0 || columna > 9)
+			columna = misBloques[2].getPosicionColumna() - 1;
+			if (fila < 21 || columna < 0)
 				break;
 			misBloques[2] = tableroGrafico[fila][columna];
 			fila = misBloques[3].getPosicionFila() + 2;
-			columna = misBloques[3].getPosicionColumna() + 1;
-			if (fila > 21 || columna > 9)
+			columna = misBloques[3].getPosicionColumna() - 2;
+			if (fila > 21 || columna < 0)
 				break;
 			misBloques[3] = tableroGrafico[fila][columna];
 			 break;}
