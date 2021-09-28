@@ -1,17 +1,12 @@
-/**
- * 
- */
 package Gui;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import javax.swing.ImageIcon;
+import java.awt.Toolkit;
 
-/**
- * @author Zkeith
- *
- */
 public class Ayuda extends JFrame {
 	
 	
@@ -19,12 +14,14 @@ public class Ayuda extends JFrame {
 	private int dimensionY = 300;
 	
 	public Ayuda() {
-		setTitle("LAS REGLAS");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Ayuda.class.getResource("/images/icon-tetris.png")));
+		setTitle("Reglas del Tetris");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(new Dimension(407, 300));
+		setSize(new Dimension(407, 235));
 		setAlwaysOnTop(true);
 		
-		JLabel lblNewLabel = new JLabel("ACA VAN LAS REGLAS DEL JUEGO Y LOS CONTROLES\r\n\r\n\r\n\r\n");
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Ayuda.class.getResource("/images/reglas.jpeg")));
 		getContentPane().add(lblNewLabel, BorderLayout.CENTER);
 	}
 

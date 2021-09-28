@@ -38,15 +38,16 @@ public class Logica {
 		actualizarTetriminoProximo();
 		actualizarTetriminoActual();
 		actualizarTetriminoProximo();
-		this.puntaje=0;
+		this.puntaje = 0;
 		
-		//iniciarJuego();
+		iniciarJuego();
 		
 	}
 
 	public void iniciarJuego() {
 		reloj = new Reloj(Gui, this);
-		reloj.run();
+		Thread t = new Thread(this.reloj);
+		t.start();
 	}
 	
 	public int getPuntaje() {
@@ -77,13 +78,13 @@ public class Logica {
 			bloques[2] = tableroGrafico[bloques[2].getPosicionFila() + 1][bloques[2].getPosicionColumna()];	
 			bloques[3] = tableroGrafico[bloques[3].getPosicionFila() + 1][bloques[3].getPosicionColumna()];
 			
-			for (int i = 0; i<bloquesDer.length;i++) {
+			for (int i = 0; i < bloquesDer.length; i++) {
 				bloquesDer[i] = tableroGrafico[bloquesDer[i].getPosicionFila() + 1][bloquesDer[i].getPosicionColumna()];	
 			}
-			for (int i = 0; i<bloquesIzq.length;i++) {
+			for (int i = 0; i < bloquesIzq.length; i++) {
 				bloquesIzq[i] = tableroGrafico[bloquesIzq[i].getPosicionFila() + 1][bloquesIzq[i].getPosicionColumna()];	
 			}
-			for (int i = 0; i<bloquesAbaj.length;i++) {
+			for (int i = 0; i < bloquesAbaj.length; i++) {
 				bloquesAbaj[i] = tableroGrafico[bloquesAbaj[i].getPosicionFila() + 1][bloquesAbaj[i].getPosicionColumna()];	
 			}
 			
@@ -93,8 +94,7 @@ public class Logica {
 			sumarPuntos();
 			actualizarTetriminoActual();
 			actualizarTetriminoProximo();
-			if (!miGrilla.puedeAparecer(tetriminoActual))
-				finDelJuego();
+			
 			
 		}
 	}
@@ -107,6 +107,8 @@ public class Logica {
 		this.tetriminoActual = this.tetriminoProximo;
 		if (miGrilla.puedeAparecer(tetriminoActual))
 			Gui.pintarNuevo(tetriminoActual.getBloques(), tetriminoActual.color);
+		else
+			finDelJuego();
 	}
 	
 	public void actualizarTetriminoProximo(){
@@ -136,13 +138,13 @@ public class Logica {
 
 			Gui.pintarNuevo(bloques, tetriminoActual.color);
 			
-			for (int i = 0; i<bloquesDer.length;i++) {
+			for (int i = 0; i < bloquesDer.length; i++) {
 				bloquesDer[i] = tableroGrafico[bloquesDer[i].getPosicionFila()][bloquesDer[i].getPosicionColumna() + 1];	
 			}
-			for (int i = 0; i<bloquesIzq.length;i++) {
+			for (int i = 0; i < bloquesIzq.length; i++) {
 				bloquesIzq[i] = tableroGrafico[bloquesIzq[i].getPosicionFila()][bloquesIzq[i].getPosicionColumna() + 1];	
 			}
-			for (int i = 0; i<bloquesAbaj.length;i++) {
+			for (int i = 0; i < bloquesAbaj.length; i++) {
 				bloquesAbaj[i] = tableroGrafico[bloquesAbaj[i].getPosicionFila()][bloquesAbaj[i].getPosicionColumna() + 1];	
 			}
 			
@@ -164,13 +166,13 @@ public class Logica {
 			bloques[2] = tableroGrafico[bloques[2].getPosicionFila()][bloques[2].getPosicionColumna() - 1];	
 			bloques[3] = tableroGrafico[bloques[3].getPosicionFila()][bloques[3].getPosicionColumna() - 1];	
 
-			for (int i = 0; i<bloquesDer.length;i++) {
+			for (int i = 0; i < bloquesDer.length;i++) {
 				bloquesDer[i] = tableroGrafico[bloquesDer[i].getPosicionFila()][bloquesDer[i].getPosicionColumna() - 1];	
 			}
-			for (int i = 0; i<bloquesIzq.length;i++) {
+			for (int i = 0; i < bloquesIzq.length;i++) {
 				bloquesIzq[i] = tableroGrafico[bloquesIzq[i].getPosicionFila()][bloquesIzq[i].getPosicionColumna() - 1];	
 			}
-			for (int i = 0; i<bloquesAbaj.length;i++) {
+			for (int i = 0; i < bloquesAbaj.length;i++) {
 				bloquesAbaj[i] = tableroGrafico[bloquesAbaj[i].getPosicionFila()][bloquesAbaj[i].getPosicionColumna() - 1];	
 			}
 			
@@ -185,20 +187,20 @@ public class Logica {
 	}
 	
 	public void sumarPuntos() {
-		int [] lineasLlenas= miGrilla.getLineasLlenas(tetriminoActual);
+		int [] lineasLlenas = miGrilla.getLineasLlenas(tetriminoActual);
 		miGrilla.eliminarLineas(lineasLlenas);
-		int cantLineasLlenas=0;
+		int cantLineasLlenas = 0;
 		
-		for(int i=0; i<lineasLlenas.length; i++)
-			if (lineasLlenas[i]!=22)
+		for(int i = 0; i < lineasLlenas.length; i++)
+			if (lineasLlenas[i] != 22)
 				cantLineasLlenas++;
 		
 		switch(cantLineasLlenas) {
-		case 0: {break;}
 		case 1: {actualizarPuntaje(100); break;}
 		case 2: {actualizarPuntaje(200); break;}
 		case 3: {actualizarPuntaje(500); break;}
 		case 4: {actualizarPuntaje(800); break;}
+		default: {actualizarPuntaje(0); break;}
 		}
 		
 		Gui.getPuntos().setText("" + this.puntaje);
@@ -210,8 +212,592 @@ public class Logica {
 
 	public void rotarTetrimino() {
 		if (miGrilla.puedeRotar(tetriminoActual)) {
+			if (tetriminoActual.getClass().equals(TetriminoL.class)){
+				rotarTetriminoL();
+			}
+			if (tetriminoActual.getClass().equals(TetriminoLReves.class)){
+				rotarTetriminoLReves();
+			}
+			if (tetriminoActual.getClass().equals(TetriminoT.class)){
+				rotarTetriminoT();
+			}
+			if (tetriminoActual.getClass().equals(TetriminoI.class)){
+				rotarTetriminoI();
+			}
+			if (tetriminoActual.getClass().equals(TetriminoS.class)){
+				rotarTetriminoS();
+			}
+			if (tetriminoActual.getClass().equals(TetriminoZ.class)){
+				rotarTetriminoZ();
+			}
 			tetriminoActual.rotar();
 		}
 		
 	}
+
+	private void rotarTetriminoL(){
+		System.out.println("Empece la rotacion");
+		int rotacion = tetriminoActual.getRotacion();
+		Bloque[] misBloques = tetriminoActual.getBloques();
+		Bloque [][] tableroGrafico = Gui.getTableroGrafico();
+		switch(rotacion) {
+		case 0: {
+	
+			Gui.pintarFondo(misBloques);
+			int fila = misBloques[1].getPosicionFila()-1;
+			int columna = misBloques[1].getPosicionColumna()+1;
+			if (fila < 0 || columna > 9)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() + 1;
+			columna = misBloques[3].getPosicionColumna() - 1;
+			if (fila > 21 || columna < 0)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			fila = misBloques[0].getPosicionFila() + 2;
+			columna = misBloques[0].getPosicionColumna();
+			if (fila > 21 || columna < 0)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());	
+		break;}
+		case 90: {
+			Gui.pintarFondo(misBloques);
+			int fila = misBloques[1].getPosicionFila()+1;
+			int columna = misBloques[1].getPosicionColumna()+1;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() - 1;
+			columna = misBloques[3].getPosicionColumna() - 1;
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			fila = misBloques[0].getPosicionFila();
+			columna = misBloques[0].getPosicionColumna() - 2;
+			if (fila > 21 || columna < 0)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());
+			 break;}
+		case 180: {
+			Gui.pintarFondo(misBloques);
+			int fila = misBloques[1].getPosicionFila() + 1;
+			int columna = misBloques[1].getPosicionColumna() - 1;
+			if (fila > 21 || columna < 0)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() - 1;
+			columna = misBloques[3].getPosicionColumna() + 1;
+			if (fila < 0 || columna > 9)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			fila = misBloques[0].getPosicionFila() - 2;
+			columna = misBloques[0].getPosicionColumna();
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());
+			 break;}
+		case 270: {
+			Gui.pintarFondo(misBloques);
+			int fila = misBloques[1].getPosicionFila() - 1;
+			int columna = misBloques[1].getPosicionColumna() - 1;
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() + 1;
+			columna = misBloques[3].getPosicionColumna() + 1;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			fila = misBloques[0].getPosicionFila();
+			columna = misBloques[0].getPosicionColumna() + 2;
+			if (fila < 0 || columna > 9)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());
+			 break;}
+		}
+	}
+
+	private void rotarTetriminoLReves(){
+		int rotacion = tetriminoActual.getRotacion();
+		Bloque[] misBloques = tetriminoActual.getBloques();
+		Bloque [][] tableroGrafico = Gui.getTableroGrafico();
+		switch(rotacion) {
+		case 0: {
+			Gui.pintarFondo(misBloques);
+
+			int fila = misBloques[0].getPosicionFila();
+			int columna = misBloques[0].getPosicionColumna() + 2;
+			if (fila < 0 || columna > 9)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[1].getPosicionFila() - 1 ;
+			columna = misBloques[1].getPosicionColumna() + 1;
+			if (fila < 0 || columna > 9)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() + 1;
+			columna = misBloques[3].getPosicionColumna() - 1;
+			if (fila > 21 || columna < 0)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());
+			
+		break;}
+		case 90: {
+			Gui.pintarFondo(misBloques);
+
+			int fila = misBloques[0].getPosicionFila() + 2;
+			int columna = misBloques[0].getPosicionColumna();
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[1].getPosicionFila() + 1 ;
+			columna = misBloques[1].getPosicionColumna() + 1;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() - 1;
+			columna = misBloques[3].getPosicionColumna() - 1;
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());				
+		break;}
+		case 180: {
+			Gui.pintarFondo(misBloques);
+
+			int fila = misBloques[0].getPosicionFila();
+			int columna = misBloques[0].getPosicionColumna() - 2;
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[1].getPosicionFila() + 1 ;
+			columna = misBloques[1].getPosicionColumna() - 1;
+			if (fila > 21 || columna < 0)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() - 1;
+			columna = misBloques[3].getPosicionColumna() + 1;
+			if (fila < 0 || columna > 9)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());				
+		break;}
+		case 270: {
+			Gui.pintarFondo(misBloques);
+
+			int fila = misBloques[0].getPosicionFila() - 2;
+			int columna = misBloques[0].getPosicionColumna() ;
+			if (fila < 0 || columna > 9)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[1].getPosicionFila() - 1 ;
+			columna = misBloques[1].getPosicionColumna() - 1;
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() + 1;
+			columna = misBloques[3].getPosicionColumna() + 1;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());				
+		break;}
+		}
+	}
+
+	private void rotarTetriminoT(){
+		int rotacion = tetriminoActual.getRotacion();
+		Bloque[] misBloques = tetriminoActual.getBloques();
+		Bloque [][] tableroGrafico = Gui.getTableroGrafico();
+		switch(rotacion) {
+		case 0: {
+			Gui.pintarFondo(misBloques);
+
+			int fila = misBloques[0].getPosicionFila() - 1;
+			int columna = misBloques[0].getPosicionColumna() - 1;
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[1].getPosicionFila() - 1;
+			columna = misBloques[1].getPosicionColumna() + 1;
+			if (fila < 0 || columna > 9)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() + 1;
+			columna = misBloques[3].getPosicionColumna() - 1;
+			if (fila > 21 || columna < 0)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());
+		break;}
+		case 90: {
+			Gui.pintarFondo(misBloques);
+
+			int fila = misBloques[0].getPosicionFila() - 1;
+			int columna = misBloques[0].getPosicionColumna() + 1;
+			if (fila < 0 || columna > 9 )
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[1].getPosicionFila() + 1;
+			columna = misBloques[1].getPosicionColumna() + 1;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() - 1;
+			columna = misBloques[3].getPosicionColumna() - 1;
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());
+		break;}
+		case 180: {
+			Gui.pintarFondo(misBloques);
+
+			int fila = misBloques[0].getPosicionFila() + 1;
+			int columna = misBloques[0].getPosicionColumna() + 1;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[1].getPosicionFila() + 1;
+			columna = misBloques[1].getPosicionColumna() - 1;
+			if (fila > 21 || columna < 0)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() - 1;
+			columna = misBloques[3].getPosicionColumna() + 1;
+			if (fila < 0 || columna > 9)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());
+		break;}
+		case 270: {
+			Gui.pintarFondo(misBloques);
+
+			int fila = misBloques[0].getPosicionFila() + 1;
+			int columna = misBloques[0].getPosicionColumna() - 1;
+			if (fila > 21 || columna < 0)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[1].getPosicionFila() - 1;
+			columna = misBloques[1].getPosicionColumna() - 1;
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() + 1;
+			columna = misBloques[3].getPosicionColumna() + 1;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());
+		break;}
+		}
+	}
+
+	private void rotarTetriminoS(){
+		int rotacion = tetriminoActual.getRotacion();
+		Bloque[] misBloques = tetriminoActual.getBloques();
+		Bloque [][] tableroGrafico = Gui.getTableroGrafico();
+		switch(rotacion) {
+		case 0: {
+			Gui.pintarFondo(misBloques);
+
+			int fila = misBloques[0].getPosicionFila() - 1;
+			int columna = misBloques[0].getPosicionColumna() + 1;
+			if (fila < 0 || columna > 9)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[2].getPosicionFila() + 1;
+			columna = misBloques[2].getPosicionColumna() + 1;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[2] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() + 2;
+			columna = misBloques[3].getPosicionColumna();
+			if (fila > 21 || columna < 0)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());	
+		break;}
+		case 90: {
+			Gui.pintarFondo(misBloques);
+
+			int fila = misBloques[0].getPosicionFila() + 1;
+			int columna = misBloques[0].getPosicionColumna() + 1;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[2].getPosicionFila() + 1;
+			columna = misBloques[2].getPosicionColumna() - 1;
+			if (fila > 21 || columna < 0)
+				break;
+			misBloques[2] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila();
+			columna = misBloques[3].getPosicionColumna() - 2;
+			if (fila > 21 || columna < 0)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());	
+		break;}
+		case 180: {
+			Gui.pintarFondo(misBloques);
+
+			int fila = misBloques[0].getPosicionFila() + 1;
+			int columna = misBloques[0].getPosicionColumna() - 1;
+			if (fila > 21 || columna < 0)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[2].getPosicionFila() - 1;
+			columna = misBloques[2].getPosicionColumna() - 1;
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[2] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() - 2;
+			columna = misBloques[3].getPosicionColumna();
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());	
+		break;}
+		case 270: {
+			Gui.pintarFondo(misBloques);
+
+			int fila = misBloques[0].getPosicionFila() - 1;
+			int columna = misBloques[0].getPosicionColumna() - 1;
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[2].getPosicionFila() - 1;
+			columna = misBloques[2].getPosicionColumna() + 1;
+			if (fila < 0 || columna > 9)
+				break;
+			misBloques[2] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila();
+			columna = misBloques[3].getPosicionColumna() + 2;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());
+		break;}
+		}
+	}
+
+	private void rotarTetriminoZ(){
+		int rotacion = tetriminoActual.getRotacion();
+		Bloque[] misBloques = tetriminoActual.getBloques();
+		Bloque [][] tableroGrafico = Gui.getTableroGrafico();
+		switch(rotacion) {
+		case 0: {
+			Gui.pintarFondo(misBloques);
+
+			int fila = misBloques[0].getPosicionFila();
+			int columna = misBloques[0].getPosicionColumna() + 2;
+			if (fila < 0 || columna > 9)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[1].getPosicionFila() + 1;
+			columna = misBloques[1].getPosicionColumna() + 1;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() + 1;
+			columna = misBloques[3].getPosicionColumna() - 1;
+			if (fila > 21 || columna < 0)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());	
+		break;}
+		case 90: {
+			Gui.pintarFondo(misBloques);
+
+			int fila = misBloques[0].getPosicionFila() ;
+			int columna = misBloques[0].getPosicionColumna() + 2;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[1].getPosicionFila() + 1;
+			columna = misBloques[1].getPosicionColumna() - 1;
+			if (fila > 21 || columna < 0)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() - 1;
+			columna = misBloques[3].getPosicionColumna() - 1;
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());	
+		break;}
+		case 180: {
+			Gui.pintarFondo(misBloques);
+
+			int fila = misBloques[0].getPosicionFila();
+			int columna = misBloques[0].getPosicionColumna() - 2;
+			if (fila > 21 || columna < 0)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[1].getPosicionFila() - 1;
+			columna = misBloques[1].getPosicionColumna() - 1;
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() - 1;
+			columna = misBloques[3].getPosicionColumna() + 1;
+			if (fila < 0 || columna > 9)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());	
+		break;}
+		case 270: {
+			Gui.pintarFondo(misBloques);
+
+			int fila = misBloques[0].getPosicionFila() - 2;
+			int columna = misBloques[0].getPosicionColumna();
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[1].getPosicionFila() - 1;
+			columna = misBloques[1].getPosicionColumna() + 1;
+			if (fila < 0 || columna > 9)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() + 1;
+			columna = misBloques[3].getPosicionColumna() + 1;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());
+		break;}
+		}
+	}
+
+	private void rotarTetriminoI(){
+		int rotacion = tetriminoActual.getRotacion();
+		Bloque[] misBloques = tetriminoActual.getBloques();
+		Bloque [][] tableroGrafico = Gui.getTableroGrafico();
+		switch(rotacion) {
+		case 0: {
+			Gui.pintarFondo(misBloques);
+			int fila = misBloques[0].getPosicionFila() + 1;
+			int columna = misBloques[0].getPosicionColumna() + 2;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[1].getPosicionFila();
+			columna = misBloques[1].getPosicionColumna() + 1;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[2].getPosicionFila() - 1;
+			columna = misBloques[2].getPosicionColumna();
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[2] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() - 2;
+			columna = misBloques[3].getPosicionColumna() - 1;
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());	
+		break;}
+		case 90: {
+			Gui.pintarFondo(misBloques);
+
+			int fila = misBloques[0].getPosicionFila() - 1;
+			int columna = misBloques[0].getPosicionColumna() - 2;
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[1].getPosicionFila();
+			columna = misBloques[1].getPosicionColumna() - 1;
+			if (fila > 21 || columna < 0)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[2].getPosicionFila() + 1;
+			columna = misBloques[2].getPosicionColumna();
+			if (fila < 0 || columna > 9)
+				break;
+			misBloques[2] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() + 2;
+			columna = misBloques[3].getPosicionColumna() + 1;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());
+			 break;}
+		case 180: {
+			Gui.pintarFondo(misBloques);
+			int fila = misBloques[0].getPosicionFila() + 1;
+			int columna = misBloques[0].getPosicionColumna() + 2;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[1].getPosicionFila();
+			columna = misBloques[1].getPosicionColumna() + 1;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[2].getPosicionFila() - 1;
+			columna = misBloques[2].getPosicionColumna();
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[2] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() - 2;
+			columna = misBloques[3].getPosicionColumna() - 1;
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			
+			Gui.pintarNuevo(misBloques, tetriminoActual.getColor());
+			 break;}
+		case 270: {
+			Gui.pintarFondo(misBloques);
+			
+			int fila = misBloques[0].getPosicionFila() - 1;
+			int columna = misBloques[0].getPosicionColumna() - 2;
+			if (fila < 0 || columna < 0)
+				break;
+			misBloques[0] = tableroGrafico[fila][columna];
+			fila = misBloques[1].getPosicionFila();
+			columna = misBloques[1].getPosicionColumna() - 1;
+			if (fila > 21 || columna < 0)
+				break;
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[2].getPosicionFila() + 1;
+			columna = misBloques[2].getPosicionColumna();
+			if (fila < 0 || columna > 9)
+				break;
+			misBloques[2] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() + 2;
+			columna = misBloques[3].getPosicionColumna() + 1;
+			if (fila > 21 || columna > 9)
+				break;
+			misBloques[3] = tableroGrafico[fila][columna];
+			 break;}
+		}
+	}
+
+
 }

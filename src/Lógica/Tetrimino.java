@@ -3,7 +3,7 @@ package Lógica;
 import java.awt.Color;
 
 public abstract class Tetrimino {
-	protected int rotacion=0;
+	protected int rotacion = 0;
 	protected Color color;
 	protected Bloque[] bloquesIzq;
 	protected Bloque[] bloquesDer;
@@ -27,5 +27,8 @@ public abstract class Tetrimino {
 
 	public abstract Color getColor() ;
 
+	public int getRotacion() {
+		return rotacion;
+	}
 
 }

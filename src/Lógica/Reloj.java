@@ -12,14 +12,14 @@ public class Reloj implements Runnable {
 	protected long tiempoInicial = System.currentTimeMillis(); 
 	protected long tiempoActual = System.currentTimeMillis();
 	protected long tiempoTranscurrido = tiempoActual - tiempoInicial;
-	protected long tiempoActualEnSegundos = System.currentTimeMillis() / 1000;
+	protected long tiempoActualEnSegundos = tiempoTranscurrido / 1000;
 	protected int paso = 1000;
 	protected boolean activo;
 	
 	public Reloj (GUI gui, Logica juego) {
 		this.gui = gui;
 		this.logica = juego;
-		this.activo=true;
+		this.activo = true;
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class Reloj implements Runnable {
 		while (activo) {			
 			tiempoActual = System.currentTimeMillis(); 
 			tiempoTranscurrido = tiempoActual - tiempoInicial;
-			tiempoActualEnSegundos = System.currentTimeMillis() / 1000;		
+			tiempoActualEnSegundos = tiempoTranscurrido / 1000;		
 			try {
 				Thread.sleep(paso);
 				logica.bajarTetrimino();

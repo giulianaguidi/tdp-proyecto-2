@@ -18,7 +18,7 @@ public class Bloque extends JLabel {
 	public Bloque(int posF, int posC, Color color) {
 		this.posicionFila = posF;
 		this.posicionColumna = posC;
-		this.color=color;
+		this.color = color;
 	}
 	
 	public void pintar (Color c) {

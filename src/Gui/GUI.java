@@ -2,7 +2,7 @@ package Gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -12,16 +12,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import Lógica.Bloque;
 import Lógica.Logica;
 import Lógica.Tetrimino;
-
-import java.awt.FlowLayout;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JTextField;
 
 
 public class GUI extends JFrame implements KeyListener{
@@ -255,7 +251,7 @@ public class GUI extends JFrame implements KeyListener{
 		Bloque[] auxiliar = proximo.getBloques();
 		for (int i = 0; i < auxiliar.length; i++) {
 			int fila = auxiliar[i].getPosicionFila();
-			int columna = auxiliar[i].getPosicionColumna()-4;
+			int columna = auxiliar[i].getPosicionColumna() - 4;
 			proximoTetrimino[fila][columna].pintar(proximo.getColor());
 		}
 	}
@@ -263,7 +259,7 @@ public class GUI extends JFrame implements KeyListener{
 	public void repintarProximoTetrimino() {
 		// TODO Auto-generated method stub
 		for(int fila = 0; fila<proximoTetrimino.length;fila++) {
-			for (int columna = 0; columna<proximoTetrimino[fila].length;columna++) {
+			for (int columna = 0; columna < proximoTetrimino[fila].length; columna++) {
 				proximoTetrimino[fila][columna].pintar(fondo);
 			}
 		}
