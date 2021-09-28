@@ -52,6 +52,7 @@ public class TetriminoZ extends Tetrimino {
 				bloquesDer[1] = misBloques[2];
 				bloquesAbaj[0] = misBloques[0];			//
 				bloquesAbaj[1] = misBloques[1];			//
+				bloquesAbaj[2]= misBloques[3];
 			}else {
 				if (this.rotacion == 180) {
 					this.bloquesIzq = new Bloque[3];		// en 270
