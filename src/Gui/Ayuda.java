@@ -7,11 +7,8 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 
+@SuppressWarnings("serial")
 public class Ayuda extends JFrame {
-	
-	
-	private int dimensionX = 200;
-	private int dimensionY = 300;
 	
 	public Ayuda() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Ayuda.class.getResource("/images/icon-tetris.png")));

@@ -5,22 +5,27 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.applet.AudioClip;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import Audio.AudioPlayer;
 import Lógica.Bloque;
 import Lógica.Logica;
 import Lógica.Tetrimino;
 
 
+@SuppressWarnings("serial")
 public class GUI extends JFrame implements KeyListener{
 	private JSplitPane splitPane;
 	private JPanel panelIzq;
@@ -32,6 +37,9 @@ public class GUI extends JFrame implements KeyListener{
 	protected JLabel tiempo;
 	protected JLabel puntos;
 	protected Logica miLogica;
+	private AudioPlayer ap;
+	private Thread audio;
+	protected JToggleButton jToggleButtonAudio;
 	
 	protected static final Color fondo = new Color(1, 1, 1);
 	
@@ -81,8 +89,7 @@ public class GUI extends JFrame implements KeyListener{
 		Dimension d = new Dimension();
 		d.setSize(splitPane.getSize().getWidth() / 2, splitPane.getSize().getHeight());
 		
-		panelDer.setSize(d);
-		
+		panelDer.setSize(d);		
 		
 		setTitle("¡Juega al Tetris!");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -94,13 +101,8 @@ public class GUI extends JFrame implements KeyListener{
 		puntos.setFont(new Font("Consolas", Font.BOLD, 16));
 		puntos.setBounds(106, 25, 90, 19);
 
-
 		prepararGrillaIzq();
 		prepararGrillaDer();
-
-		AudioClip Sound;
-		Sound = java.applet.Applet.newAudioClip(getClass().getResource("/music/tetris-theme.mp3"));
-		Sound.play();
 		
 	}
 	
@@ -196,7 +198,21 @@ public class GUI extends JFrame implements KeyListener{
 			}
 			boundX = 114;
 			boundY+=25;
-		}		
+		}
+		
+		jToggleButtonAudio = new JToggleButton();
+		jToggleButtonAudio.setIcon(new ImageIcon(GUI.class.getResource("/images/music-icon-cancel.png")));
+		jToggleButtonAudio.setBounds(191, 578, 130, 122);
+		panelDer.add(jToggleButtonAudio);
+		jToggleButtonAudio.setOpaque(false);
+		jToggleButtonAudio.setFocusable(false);
+		jToggleButtonAudio.setSelected(true);
+		jToggleButtonAudio.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent evt) {
+				jToggleButtonAudioActionPerformed(evt);			
+			}
+		});
 		
 	}
 
@@ -249,7 +265,6 @@ public class GUI extends JFrame implements KeyListener{
 	}
 
 	public void pintarProximoTetriminoGrafico(Tetrimino proximo) {
-		// TODO Auto-generated method stub
 		Bloque[] auxiliar = proximo.getBloques();
 		for (int i = 0; i < auxiliar.length; i++) {
 			int fila = auxiliar[i].getPosicionFila();
@@ -259,11 +274,42 @@ public class GUI extends JFrame implements KeyListener{
 	}
 
 	public void repintarProximoTetrimino() {
-		// TODO Auto-generated method stub
 		for(int fila = 0; fila<proximoTetrimino.length;fila++) {
 			for (int columna = 0; columna < proximoTetrimino[fila].length; columna++) {
 				proximoTetrimino[fila][columna].pintar(null);
 			}
 		}
 	}
+	
+	private void jToggleButtonAudioActionPerformed(ActionEvent evt) {
+		if(this.jToggleButtonAudio.isSelected()) {
+			audioOn();		
+		} else {
+			audioOff();
+		}
+	}
+	
+	private void audioOn() {
+		jToggleButtonAudio.setIcon(new ImageIcon(GUI.class.getResource("/images/music-icon.png")));
+		ap = new AudioPlayer("music/tetris-theme.mp3");
+		audio = new Thread(ap);
+		audio.start();
+	}
+	
+	private void audioOff() {
+		jToggleButtonAudio.setIcon(new ImageIcon(GUI.class.getResource("/images/music-icon-cancel.png")));
+		ap = null;
+		audio.stop();
+		audio = null;
+	}
+	
+	public void iniciarAudio() {
+		audioOn();
+	}
+	
+	public void detenerAudio(){
+		if (audio!=null)
+			audio.stop();
+	}
+
 }

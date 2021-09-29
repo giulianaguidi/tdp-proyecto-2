@@ -63,8 +63,8 @@ public class TetriminoLReves extends Tetrimino {
 					this.bloquesAbaj[0] = misBloques[0];	//		 b22
 					this.bloquesAbaj[1] = misBloques[1];	//  b11  b21
 					this.bloquesIzq[0] = this.misBloques[0]; //
-					this.bloquesDer[1] = this.misBloques[2];
-				    this.bloquesDer[2] = this.misBloques[3];
+					this.bloquesIzq[1] = this.misBloques[2];
+				    this.bloquesIzq[2] = this.misBloques[3];
 					this.bloquesDer[0] = this.misBloques[3];	//
 					this.bloquesDer[1] = this.misBloques[2];	//
 					this.bloquesDer[2] = this.misBloques[1];	//
