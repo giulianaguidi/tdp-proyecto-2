@@ -64,7 +64,7 @@ public class TetriminoZ extends Tetrimino {
 					this.bloquesIzq[2] = this.misBloques[3];
 					this.bloquesDer[0] = this.misBloques[2]; //
 					this.bloquesDer[1] = this.misBloques[3]; //
-					this.bloquesDer[2] = this.misBloques[1];
+					this.bloquesDer[2] = this.misBloques[0];
 					this.bloquesAbaj[1] = this.misBloques[2];
 				}
 				else {

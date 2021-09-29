@@ -3,7 +3,7 @@ package Audio;
 import java.io.File;
 import java.io.FileInputStream;
 
-import javazoom.jl.player.Player;
+//import javazoom.jl.player.Player;
 
 public class AudioPlayer implements Runnable {
 	
@@ -18,8 +18,8 @@ public class AudioPlayer implements Runnable {
 		try{
 			File f = new File(getClass().getClassLoader().getResource(this.file).toURI());
 			FileInputStream fis = new FileInputStream(f);
-			Player playMP3 = new Player(fis);
-			playMP3.play();
+			//Player playMP3 = new Player(fis);
+			//playMP3.play();
 			
 		}
 		catch(Exception ex)

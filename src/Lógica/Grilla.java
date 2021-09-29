@@ -395,9 +395,8 @@ public class Grilla {
 				
 		break;}
 		case 90: {
-
-			int fila = misBloques[0].getPosicionFila() ;
-			int columna = misBloques[0].getPosicionColumna() + 2;
+			int fila = misBloques[0].getPosicionFila() -2;
+			int columna = misBloques[0].getPosicionColumna() ;
 			if (fila > tablero.length - 1 || columna > tablero[0].length - 1)
 				cumple = false;
 			else
@@ -412,7 +411,6 @@ public class Grilla {
 				
 		break;}
 		case 180: {
-
 			int fila = misBloques[0].getPosicionFila();
 			int columna = misBloques[0].getPosicionColumna() - 2;
 			if (fila > tablero.length - 1 || columna < 0)
@@ -429,7 +427,6 @@ public class Grilla {
 				
 		break;}
 		case 270: {
-
 			int fila = misBloques[0].getPosicionFila() - 2;
 			int columna = misBloques[0].getPosicionColumna();
 			if (fila < 0 || columna < 0)
