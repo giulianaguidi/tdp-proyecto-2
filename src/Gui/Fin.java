@@ -25,7 +25,7 @@ public class Fin extends JFrame {
 		
 		JLabel textoPuntaje = new JLabel("Su puntaje en esta partida fue: " + miLogica.getPuntaje());
 		textoPuntaje.setForeground(Color.WHITE);
-		textoPuntaje.setBounds(56, 35, 330, 110);
+		textoPuntaje.setBounds(22, 35, 415, 110);
 		textoPuntaje.setFont(new Font("Consolas", Font.PLAIN, 18));
 
 		getContentPane().add(textoPuntaje);
