@@ -25,7 +25,7 @@ public abstract class Tetrimino {
 	
 	public abstract Tetrimino clone();
 
-	public abstract Color getColor() ;
+	public abstract Color getColor();
 
 	public int getRotacion() {
 		return rotacion;

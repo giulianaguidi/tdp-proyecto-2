@@ -37,6 +37,10 @@ public class Reloj implements Runnable {
 			if (tiempoActualEnSegundos == 45) {
 				actualizarPaso();
 			}
+			if (!gui.isVisible()) {
+				gui.detenerAudio();
+				this.stop();
+			}
 		}	
 		
 	}

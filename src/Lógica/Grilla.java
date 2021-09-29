@@ -23,12 +23,12 @@ public class Grilla {
 		Bloque [] bloques = t.getBloques();
 		boolean encontrado = false;
 		int[] toReturn = new int[4];
-		for (int i = 0 ; i < bloques.length ; i++) {
+		for (int i = 0; i < bloques.length; i++) {
 			if (lineaNoChequeada(bloques,i)) {
 				encontrado = chequearLineaLlena(bloques[i].getPosicionFila());
 				toReturn[i] = encontrado ? bloques[i].getPosicionFila() : 22;
 			}else{
-				toReturn[i]=22;
+				toReturn[i] = 22;
 			}
 		}
 		return toReturn;
@@ -36,7 +36,7 @@ public class Grilla {
 	
 	private boolean lineaNoChequeada(Bloque[] bloques, int i) {
 		boolean yaChequeado = false;
-		for (int j = 0 ; j < i && !yaChequeado ; j++) {
+		for (int j = 0; j < i && !yaChequeado; j++) {
 			yaChequeado = bloques[j].getPosicionFila() == bloques[i].getPosicionFila();
 		}
 		return !yaChequeado;

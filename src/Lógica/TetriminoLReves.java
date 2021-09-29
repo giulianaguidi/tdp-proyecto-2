@@ -34,13 +34,13 @@ public class TetriminoLReves extends Tetrimino {
 			this.bloquesAbaj = new Bloque[3];	//en 0
 			this.bloquesIzq = new Bloque[2];	//Tetrimino:
 			this.bloquesDer = new Bloque[2];	// b11
-			this.bloquesIzq[0] = misBloques[0]; // b21  b22  b23
-			this.bloquesIzq[1] = misBloques[1]; //
-			this.bloquesDer[0] = misBloques[3];	//
-			this.bloquesDer[1] = misBloques[0];
-			this.bloquesAbaj[0] = misBloques[1];//
-			this.bloquesAbaj[1] = misBloques[2];//
-			this.bloquesAbaj[2] = misBloques[3];//
+			this.bloquesIzq[0] = this.misBloques[0]; // b21  b22  b23
+			this.bloquesIzq[1] = this.misBloques[1]; //
+			this.bloquesDer[0] = this.misBloques[3];	//
+			this.bloquesDer[1] = this.misBloques[0];
+			this.bloquesAbaj[0] = this.misBloques[1];//
+			this.bloquesAbaj[1] = this.misBloques[2];//
+			this.bloquesAbaj[2] = this.misBloques[3];//
 			
 		}else {
 			
@@ -48,20 +48,20 @@ public class TetriminoLReves extends Tetrimino {
 				this.bloquesIzq = new Bloque [2];   //en 180
 				this.bloquesDer = new Bloque [2];	//Tetrimino:
 				this.bloquesAbaj = new Bloque [3];	// b23	b22	 b21
-				this.bloquesIzq[0] = misBloques[3];	// 			 b11
-				this.bloquesIzq[1] = misBloques[0];
-				this.bloquesDer[0] = misBloques[1];	//
-				this.bloquesDer[1] = misBloques[0];	//
-				this.bloquesAbaj[0] = misBloques[0];//
-				this.bloquesAbaj[1] = misBloques[2];
-				this.bloquesAbaj[2] = misBloques[3];
+				this.bloquesIzq[0] = this.misBloques[3];	// 			 b11
+				this.bloquesIzq[1] = this.misBloques[0];
+				this.bloquesDer[0] = this.misBloques[1];	//
+				this.bloquesDer[1] = this.misBloques[0];	//
+				this.bloquesAbaj[0] = this.misBloques[0];//
+				this.bloquesAbaj[1] = this.misBloques[2];
+				this.bloquesAbaj[2] = this.misBloques[3];
 			}else {
 				if (this.rotacion == 180) {
 					this.bloquesIzq = new Bloque[3];		//en 270
 					this.bloquesDer = new Bloque[3];		//Tetrimino:
 					this.bloquesAbaj = new Bloque [2];		// 		 b23
-					this.bloquesAbaj[0] = misBloques[0];	//		 b22
-					this.bloquesAbaj[1] = misBloques[1];	//  b11  b21
+					this.bloquesAbaj[0] = this.misBloques[0];	//		 b22
+					this.bloquesAbaj[1] = this.misBloques[1];	//  b11  b21
 					this.bloquesIzq[0] = this.misBloques[0]; //
 					this.bloquesIzq[1] = this.misBloques[2];
 				    this.bloquesIzq[2] = this.misBloques[3];
@@ -73,7 +73,7 @@ public class TetriminoLReves extends Tetrimino {
 					this.bloquesIzq = new Bloque[3];		//en 90
 					this.bloquesDer = new Bloque[3];		//Tetrimino:
 					this.bloquesAbaj = new Bloque [2];		//  b21  b11
-					this.bloquesAbaj[0] = misBloques[3];	//  b22
+					this.bloquesAbaj[0] = this.misBloques[3];	//  b22
 					this.bloquesIzq[0] = this.misBloques[1]; //  b23
 					this.bloquesIzq[1] = this.misBloques[2];	//
 					this.bloquesIzq[2] = this.misBloques[3];	//
