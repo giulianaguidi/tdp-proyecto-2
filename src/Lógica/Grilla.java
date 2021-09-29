@@ -397,7 +397,7 @@ public class Grilla {
 		case 90: {
 			int fila = misBloques[0].getPosicionFila() -2;
 			int columna = misBloques[0].getPosicionColumna() ;
-			if (fila > tablero.length - 1 || columna > tablero[0].length - 1)
+			if (fila < 0 || columna > tablero[0].length - 1)
 				cumple = false;
 			else
 				cumple = cumple && tablero[fila][columna].getColor().equals(color);
