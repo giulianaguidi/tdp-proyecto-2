@@ -11,7 +11,7 @@ public abstract class Tetrimino {
 	protected Bloque[] misBloques = new Bloque[4];
 	
 	
-	public abstract void rotar();
+	public abstract void rotar(Bloque [][] TG);
 	
 	public abstract Bloque[] getBloquesIzq();
 	
@@ -30,5 +30,7 @@ public abstract class Tetrimino {
 	public int getRotacion() {
 		return rotacion;
 	}
+
+	public abstract boolean puedeRotar(Bloque[][] tableroGrafico, Color colorFondo) ;
 
 }

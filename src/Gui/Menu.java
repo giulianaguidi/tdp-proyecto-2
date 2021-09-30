@@ -7,16 +7,18 @@ import javax.swing.JPanel;
 import Lógica.Logica;
 
 import javax.swing.JButton;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
+@SuppressWarnings("serial")
 public class Menu extends JFrame {
 	
+	@SuppressWarnings("unused")
 	private Logica miLogica;
+	@SuppressWarnings("unused")
 	private JPanel contentPane;
 	private Ayuda reglas;
 	

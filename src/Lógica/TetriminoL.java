@@ -27,7 +27,8 @@ public class TetriminoL extends Tetrimino {
 	}
 	
 	@Override
-	public void rotar() {
+	public void rotar(Bloque [][] TG) {
+		girarTetrimino(TG);
 		if (this.rotacion == 270) {
 			rotacion = 0;
 			this.bloquesAbaj = new Bloque[3];	//en 0			
@@ -86,6 +87,73 @@ public class TetriminoL extends Tetrimino {
 		}
 	}
 
+	private void girarTetrimino(Bloque [][] TG) {
+		// TODO Auto-generated method stub
+		int rotacion = getRotacion();
+		Bloque [][] tableroGrafico = TG;
+		int fila;
+		int columna;
+		switch(rotacion) {
+		case 0: {
+			fila = misBloques[1].getPosicionFila()-1;
+			columna = misBloques[1].getPosicionColumna()+1;
+
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() + 1;
+			columna = misBloques[3].getPosicionColumna() - 1;
+
+			misBloques[3] = tableroGrafico[fila][columna];
+			fila = misBloques[0].getPosicionFila() + 2;
+			columna = misBloques[0].getPosicionColumna();
+
+			misBloques[0] = tableroGrafico[fila][columna];
+				
+		break;}
+		case 90: {
+			fila = misBloques[1].getPosicionFila()+1;
+			columna = misBloques[1].getPosicionColumna()+1;
+
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() - 1;
+			columna = misBloques[3].getPosicionColumna() - 1;
+
+			misBloques[3] = tableroGrafico[fila][columna];
+			fila = misBloques[0].getPosicionFila();
+			columna = misBloques[0].getPosicionColumna() - 2;
+
+			misBloques[0] = tableroGrafico[fila][columna];
+			 break;}
+		case 180: {
+			fila = misBloques[1].getPosicionFila() + 1;
+			columna = misBloques[1].getPosicionColumna() - 1;
+
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() - 1;
+			columna = misBloques[3].getPosicionColumna() + 1;
+
+			misBloques[3] = tableroGrafico[fila][columna];
+			fila = misBloques[0].getPosicionFila() - 2;
+			columna = misBloques[0].getPosicionColumna();
+
+			misBloques[0] = tableroGrafico[fila][columna];
+			 break;}
+		case 270: {
+			fila = misBloques[1].getPosicionFila() - 1;
+			columna = misBloques[1].getPosicionColumna() - 1;
+
+			misBloques[1] = tableroGrafico[fila][columna];
+			fila = misBloques[3].getPosicionFila() + 1;
+			columna = misBloques[3].getPosicionColumna() + 1;
+
+			misBloques[3] = tableroGrafico[fila][columna];
+			fila = misBloques[0].getPosicionFila();
+			columna = misBloques[0].getPosicionColumna() + 2;
+
+			misBloques[0] = tableroGrafico[fila][columna];
+			 break;}
+		}
+	}
+
 	@Override
 	public Bloque[] getBloquesIzq() {
 		return bloquesIzq;
@@ -109,5 +177,104 @@ public class TetriminoL extends Tetrimino {
 	@Override
 	public Color getColor() {
 		return color;
+	}
+
+	@Override
+	public boolean puedeRotar(Bloque[][] tableroGrafico, Color fondo) {
+		// TODO Auto-generated method stub
+		boolean cumple = true;
+		int fila;
+		int columna;
+		switch(rotacion) {
+		case 0: {
+			fila = misBloques[1].getPosicionFila()-1;
+			columna = misBloques[1].getPosicionColumna()+1;
+			if (fila < 0 || columna > tableroGrafico[0].length - 1)
+				cumple = false;
+			else	
+				cumple = tableroGrafico[fila][columna].getColor().equals(fondo);
+			
+			fila = misBloques[3].getPosicionFila() + 1;
+			columna = misBloques[3].getPosicionColumna() - 1;
+			if (fila > tableroGrafico.length - 1 || columna < 0)
+				cumple = false;
+			else
+				cumple = cumple && tableroGrafico[fila][columna].getColor().equals(fondo);
+			
+			fila = misBloques[0].getPosicionFila() + 2;
+			columna = misBloques[0].getPosicionColumna();
+			if (fila > tableroGrafico.length - 1 || columna < 0)
+				cumple = false;
+			else	
+				cumple = cumple && tableroGrafico[fila][columna].getColor().equals(fondo);	
+		break;}
+		case 90: {
+			fila = misBloques[1].getPosicionFila()+1;
+			columna = misBloques[1].getPosicionColumna()+1;
+			if (fila > tableroGrafico.length - 1 || columna > tableroGrafico[0].length - 1)
+				cumple = false;
+			else	
+				cumple = cumple && tableroGrafico[fila][columna].getColor().equals(fondo);
+			
+			fila = misBloques[3].getPosicionFila() - 1;
+			columna = misBloques[3].getPosicionColumna() - 1;
+			if (fila < 0 || columna < 0)
+				cumple = false;
+			else
+				cumple = cumple && tableroGrafico[fila][columna].getColor().equals(fondo);
+			
+			fila = misBloques[0].getPosicionFila();
+			columna = misBloques[0].getPosicionColumna() - 2;
+			if (fila > tableroGrafico.length - 1 || columna < 0)
+				cumple = false;
+			else
+				cumple = cumple && tableroGrafico[fila][columna].getColor().equals(fondo);
+		break;}
+		case 180: {
+			fila = misBloques[1].getPosicionFila() + 1;
+			columna = misBloques[1].getPosicionColumna() - 1;
+			if (fila > tableroGrafico.length - 1 || columna < 0)
+				cumple = false;
+			else
+				cumple = cumple && tableroGrafico[fila][columna].getColor().equals(fondo);
+			
+			fila = misBloques[3].getPosicionFila() - 1;
+			columna = misBloques[3].getPosicionColumna() + 1;
+			if (fila < 0 || columna > tableroGrafico[0].length - 1)
+				cumple = false;
+			else
+				cumple = cumple && tableroGrafico[fila][columna].getColor().equals(fondo);
+			
+			fila = misBloques[0].getPosicionFila() - 2;
+			columna = misBloques[0].getPosicionColumna();
+			if (fila < 0 || columna < 0)
+				cumple = false;
+			else
+				cumple = cumple && tableroGrafico[fila][columna].getColor().equals(fondo);
+		break;}
+		case 270: {
+			fila = misBloques[1].getPosicionFila() - 1;
+			columna = misBloques[1].getPosicionColumna() + 1;
+			if (fila < 0 || columna > tableroGrafico[0].length - 1)
+				cumple = false;
+			else
+				cumple = cumple && tableroGrafico[fila][columna].getColor().equals(fondo);
+			
+			fila = misBloques[3].getPosicionFila() + 1;
+			columna = misBloques[3].getPosicionColumna() + 1;
+			if (fila > tableroGrafico.length - 1 || columna > tableroGrafico[0].length - 1)
+				cumple = false;
+			else
+				cumple = cumple && tableroGrafico[fila][columna].getColor().equals(fondo);
+			
+			fila = misBloques[0].getPosicionFila();
+			columna = misBloques[0].getPosicionColumna() + 2;
+			if (fila < 0 || columna > tableroGrafico[0].length - 1)
+				cumple = false;
+			else
+				cumple = cumple && tableroGrafico[fila][columna].getColor().equals(fondo);
+			break;}
+		}
+		return cumple;
 	}
 }

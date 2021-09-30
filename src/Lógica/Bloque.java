@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import javax.swing.JLabel;
 
+@SuppressWarnings("serial")
 public class Bloque extends JLabel {
 	protected int posicionFila;
 	protected int posicionColumna;

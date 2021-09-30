@@ -27,7 +27,7 @@ public class TetriminoO extends Tetrimino{
 	}
 
 	@Override
-	public void rotar() {
+	public void rotar(Bloque[][] TG) {
 		if (this.rotacion == 270)
 			this.rotacion = 0;		//Para este tetrimino en particular, su rotacion es trivial.
 		else
@@ -58,6 +58,11 @@ public class TetriminoO extends Tetrimino{
 	@Override
 	public Color getColor() {
 		return this.color;
+	}
+
+	@Override
+	public boolean puedeRotar(Bloque[][] tableroGrafico, Color fondo) {
+		return true;
 	}
 
 }

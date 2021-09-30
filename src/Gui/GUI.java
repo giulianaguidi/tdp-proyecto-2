@@ -32,8 +32,8 @@ public class GUI extends JFrame implements KeyListener{
 	private JPanel panelDer;
 	protected Bloque[][] tableroGrafico;
 	protected Bloque[][] proximoTetrimino;
-	protected static final int cantFilas=21;
-	protected static final int cantColumnas=10;
+	protected static final int cantFilas = 21;
+	protected static final int cantColumnas = 10;
 	protected JLabel tiempo;
 	protected JLabel puntos;
 	protected Logica miLogica;
@@ -197,7 +197,7 @@ public class GUI extends JFrame implements KeyListener{
 				boundX+=56;
 			}
 			boundX = 114;
-			boundY+=25;
+			boundY += 25;
 		}
 		
 		jToggleButtonAudio = new JToggleButton();
@@ -242,6 +242,7 @@ public class GUI extends JFrame implements KeyListener{
 	}
 
 	// ESTE METODO LO USAMOS PARA CUANDO SE PRESIONA UNA TECLA
+	@SuppressWarnings("static-access")
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == e.VK_LEFT && miLogica.enJuego())
@@ -291,11 +292,12 @@ public class GUI extends JFrame implements KeyListener{
 	
 	private void audioOn() {
 		jToggleButtonAudio.setIcon(new ImageIcon(GUI.class.getResource("/images/music-icon.png")));
-		ap = new AudioPlayer("music/tetris-theme.mp3");
+		ap = new AudioPlayer("tetris-theme.mp3");
 		audio = new Thread(ap);
 		audio.start();
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void audioOff() {
 		jToggleButtonAudio.setIcon(new ImageIcon(GUI.class.getResource("/images/music-icon-cancel.png")));
 		ap = null;
@@ -307,8 +309,9 @@ public class GUI extends JFrame implements KeyListener{
 		audioOn();
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void detenerAudio(){
-		if (audio!=null)
+		if (audio != null)
 			audio.stop();
 	}
 
